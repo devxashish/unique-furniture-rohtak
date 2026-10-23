@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue & Discovery — Unique Furniture Rohtak</title>
+  <meta name="description" content="Explore solid Sheesham beds, luxury modular sofas, teak dining sets, and ergonomic desks at Unique Furniture Rohtak.">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .shop-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    #shop-products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .filter-sidebar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1.75rem 1.5rem;
+      position: sticky;
+      top: 100px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+    }
+    .filter-group {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .filter-group:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .filter-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: #110F0D;
+    }
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .filter-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.875rem;
+      color: #3F3B36;
+      cursor: pointer;
+      transition: color 150ms ease;
+    }
+    .filter-checkbox-label:hover {
+      color: var(--accent-gold);
+    }
+    .filter-checkbox-label input {
+      accent-color: var(--accent-gold);
+      width: 17px;
+      height: 17px;
+    }
+    .active-filters-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .filter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.775rem;
+      color: var(--text-primary);
+    }
+    .shop-header-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    /* 21st.dev Style Luxury E-Commerce Product Card */
+    .product-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 12px rgba(23, 21, 19, 0.04);
+      transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 200ms ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(23, 21, 19, 0.08);
+      border-color: var(--border-light-medium);
+    }
+    .product-thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--bg-subtle);
+      overflow: hidden;
+    }
+    .product-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .product-card:hover .product-thumb img {
+      transform: scale(1.06);
+    }
+    .product-badges {
+      position: absolute;
+      top: 0.85rem;
+      left: 0.85rem;
+      z-index: 2;
+    }
+    .product-badge-lead {
+      background: rgba(13, 12, 11, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .product-wishlist-btn {
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 180ms ease;
+    }
+    .product-wishlist-btn:hover, .product-wishlist-btn.active {
+      color: #E11D48;
+      background: #FFFFFF;
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.2);
+    }
+    .product-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      background: #FFFFFF;
+    }
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .product-category-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.775rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .product-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #110F0D;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .product-title a:hover {
+      color: var(--accent-gold);
+    }
+    .product-tagline {
+      font-size: 0.825rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      margin-top: auto;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border-light);
+      margin-bottom: 1rem;
+    }
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #110F0D;
+    }
+    .product-compare-price {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      text-decoration: line-through;
+    }
+    .product-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.6rem;
+    }
+    .product-actions .btn-primary {
+      background-color: var(--accent-gold);
+      color: #12100D;
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1rem;
+      transition: all 180ms ease;
+    }
+    .product-actions .btn-primary:hover {
+      background-color: var(--accent-gold-hover);
+      transform: translateY(-1px);
+    }
+    .product-actions .btn-outline {
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: #171513;
+      font-size: 0.85rem;
+      padding: 0.65rem 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 180ms ease;
+    }
+    .product-actions .btn-outline:hover {
+      border-color: #110F0D;
+      background: var(--bg-subtle);
+    }
+
+    @media (max-width: 900px) {
+      .shop-layout {
+        grid-template-columns: 1fr;
+      }
+      .filter-sidebar {
+        display: none;
+      }
+      .mobile-filter-btn {
+        display: inline-flex !important;
+      }
+    }
+    @media (max-width: 640px) {
+      #shop-products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="badge-pill">SHOP CATALOGUE</span>
+      <span>Haryana & Delhi NCR Delivery • 10-Year Termite & Structural Guarantee</span>
+      <a href="tel:+918685813057" style="color: var(--accent-gold); font-weight: 600; text-decoration: underline;">Call: +91 86858 13057</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
+          <path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"></path>
+          <path d="M5 18v2"></path>
+          <path d="M19 18v2"></path>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">UNIQUE FURNITURE</span>
+          <span class="brand-sub">ROHTAK</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link active">Shop Collection</a>
+        <a href="custom-furniture.html" class="nav-link">Custom Studio</a>
+        <a href="reviews.html" class="nav-link">Rohtak Reviews</a>
+        <a href="store.html" class="nav-link">Our Showroom</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="action-btn" title="Saved Wishlist">
+          <i data-lucide="heart" style="width: 20px; height: 20px;"></i>
+          <span class="action-badge wishlist-count-badge" style="display: none;">0</span>
+        </a>
+        <a href="compare.html" class="action-btn" title="Compare Items">
+          <i data-lucide="sliders-horizontal" style="width: 20px; height: 20px;"></i>
+        </a>
+        <button class="action-btn open-cart-btn" title="Shopping Bag">
+          <i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i>
+          <span class="action-badge cart-count-badge" style="display: none;">0</span>
+        </button>
+        <a href="admin/index.html" class="btn-outline" style="padding: 0.45rem 0.9rem; font-size: 0.8rem;">Admin</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Shop Header Banner -->
+  <div class="shop-hero-banner" style="background-color: var(--bg-subtle); padding-block: 2.5rem; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="font-size: 0.8rem; font-weight: 600; color: var(--accent-gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.35rem;">
+        Home / Catalogue
+      </div>
+      <h1 style="font-size: 2.25rem; color: #110F0D !important;">Handcrafted Furniture Collection</h1>
+      <p style="color: #4A4540 !important; max-width: 600px; margin-top: 0.35rem;">
+        Built from kiln-seasoned hardwoods, stain-resistant fabrics, and heavy-duty German hardware. Delivered with white-glove setup.
+      </p>
+    </div>
+  </div>
+
+  <!-- Shop Section -->
+  <section class="section">
+    <div class="container">
+      <div class="shop-layout">
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <span style="font-weight: 700; font-size: 1.05rem;">Filter Selection</span>
+            <button id="reset-filters-btn" style="background: none; border: none; font-size: 0.8rem; color: var(--accent-gold); cursor: pointer; text-decoration: underline;">Reset All</button>
+          </div>
+
+          <!-- Category Filter -->
+          <div class="filter-group">
+            <div class="filter-title">Category</div>
+            <div class="filter-options" id="category-filter-list">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Material Filter -->
+          <div class="filter-group">
+            <div class="filter-title">Solid Wood & Finish</div>
+            <div class="filter-options">
+              <label class="filter-checkbox-label">
+                <input type="checkbox" name="material" value="Sheesham"> Solid Indian Sheesham
+              </label>
+              <label class="filter-checkbox-label">
+                <input type="checkbox" name="material" value="Teak"> Burmese Teakwood
+              </label>
+              <label class="filter-checkbox-label">
+                <input type="checkbox" name="material" value="Bouclé"> Textured Bouclé & Foam
+              </label>
+              <label class="filter-checkbox-label">
+                <input type="checkbox" name="material" value="Acrylic"> Anti-Scratch Acrylic
+              </label>
+              <label class="filter-checkbox-label">
+                <input type="checkbox" name="material" value="Rattan"> All-Weather Rattan
+              </label>
+            </div>
+          </div>
+
+          <!-- Price Filter -->
+          <div class="filter-group">
+            <div class="filter-title">Price Range</div>
+            <div class="filter-options">
+              <label class="filter-checkbox-label">
+                <input type="radio" name="priceRange" value="all" checked> All Prices
+              </label>
+              <label class="filter-checkbox-label">
+                <input type="radio" name="priceRange" value="under-35k"> Under ₹35,000
+              </label>
+              <label class="filter-checkbox-label">
+                <input type="radio" name="priceRange" value="35k-60k"> ₹35,000 - ₹60,000
+              </label>
+              <label class="filter-checkbox-label">
+                <input type="radio" name="priceRange" value="above-60k"> Above ₹60,000
+              </label>
+            </div>
+          </div>
+
+          <!-- Availability -->
+          <div class="filter-group">
+            <div class="filter-title">Stock Availability</div>
+            <div class="filter-options">
+              <label class="filter-checkbox-label">
+                <input type="checkbox" id="in-stock-only"> Show In-Stock Only
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Product Area -->
+        <main>
+          <!-- Controls Bar -->
+          <div class="shop-header-controls">
+            <div style="font-size: 0.9rem; color: var(--text-secondary);">
+              Showing <strong id="product-count-display" style="color: var(--text-primary);">0</strong> handcrafted furniture items
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <button class="btn-outline mobile-filter-btn" style="display: none; padding: 0.45rem 0.85rem; font-size: 0.85rem;" onclick="toggleMobileFilters()">
+                <i data-lucide="filter" style="width: 15px; height: 15px;"></i>
+                <span>Filters</span>
+              </button>
+
+              <label for="sort-select" style="font-size: 0.85rem; color: var(--text-secondary);">Sort By:</label>
+              <select id="sort-select" style="padding: 0.45rem 0.85rem; font-size: 0.85rem; border: 1px solid var(--border-medium); border-radius: var(--radius-sm); background: var(--bg-surface); outline: none;">
+                <option value="featured">Featured Picks</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Active Filter Tags -->
+          <div id="active-filter-tags" class="active-filters-bar"></div>
+
+          <!-- Products Grid -->
+          <div class="products-grid" id="shop-products-grid">
+            <!-- Injected by shop.js -->
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Drawer -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Shopping Bag</div>
+      <button class="drawer-close-btn close-cart-btn"><i data-lucide="x" style="width: 20px; height: 20px;"></i></button>
+    </div>
+    <div class="drawer-body" id="cart-drawer-items"></div>
+    <div class="drawer-footer" id="cart-drawer-footer-actions">
+      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem;">
+        <span>Subtotal:</span>
+        <span id="cart-drawer-subtotal" style="font-weight: 600;">₹0</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 700; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem; margin-bottom: 1.25rem;">
+        <span>Total:</span>
+        <span id="cart-drawer-total">₹0</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <a href="cart.html" class="btn-outline" style="padding: 0.75rem 0.5rem; text-align: center;">View Bag</a>
+        <a href="checkout.html" class="btn-gold" style="padding: 0.75rem 0.5rem; text-align: center;">Checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/commerce-adapter.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let activeCategory = 'all';
+    let activeMaterials = [];
+    let activePriceRange = 'all';
+    let onlyInStock = false;
+    let activeSort = 'featured';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Parse query params (e.g. ?category=living-room)
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('category');
+      if (catParam) activeCategory = catParam;
+
+      window.store.subscribe('store:ready', initShop);
+      if (window.store.state.products.length > 0) initShop();
+    });
+
+    function initShop() {
+      renderCategoryFilters();
+      bindFilterEvents();
+      filterAndRenderProducts();
+    }
+
+    function renderCategoryFilters() {
+      const container = document.getElementById('category-filter-list');
+      if (!container || !window.store.state.categories) return;
+
+      container.innerHTML = `
+        <label class="filter-checkbox-label">
+          <input type="radio" name="category" value="all" ${activeCategory === 'all' ? 'checked' : ''}> All Categories
+        </label>
+        ${window.store.state.categories.map(c => `
+          <label class="filter-checkbox-label">
+            <input type="radio" name="category" value="${c.slug}" ${activeCategory === c.slug ? 'checked' : ''}> ${c.name}
+          </label>
+        `).join('')}
+      `;
+    }
+
+    function bindFilterEvents() {
+      // Categories
+      document.getElementById('category-filter-list').addEventListener('change', (e) => {
+        if (e.target.name === 'category') {
+          activeCategory = e.target.value;
+          filterAndRenderProducts();
+        }
+      });
+
+      // Materials
+      document.querySelectorAll('input[name="material"]').forEach(el => {
+        el.addEventListener('change', () => {
+          activeMaterials = Array.from(document.querySelectorAll('input[name="material"]:checked')).map(i => i.value);
+          filterAndRenderProducts();
+        });
+      });
+
+      // Price Range
+      document.querySelectorAll('input[name="priceRange"]').forEach(el => {
+        el.addEventListener('change', (e) => {
+          activePriceRange = e.target.value;
+          filterAndRenderProducts();
+        });
+      });
+
+      // Stock
+      document.getElementById('in-stock-only').addEventListener('change', (e) => {
+        onlyInStock = e.target.checked;
+        filterAndRenderProducts();
+      });
+
+      // Sort
+      document.getElementById('sort-select').addEventListener('change', (e) => {
+        activeSort = e.target.value;
+        filterAndRenderProducts();
+      });
+
+      // Reset
+      document.getElementById('reset-filters-btn').addEventListener('click', () => {
+        activeCategory = 'all';
+        activeMaterials = [];
+        activePriceRange = 'all';
+        onlyInStock = false;
+        document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+        const allCat = document.querySelector('input[name="category"][value="all"]');
+        if (allCat) allCat.checked = true;
+        const allPrice = document.querySelector('input[name="priceRange"][value="all"]');
+        if (allPrice) allPrice.checked = true;
+        filterAndRenderProducts();
+      });
+    }
+
+    function filterAndRenderProducts() {
+      let prods = [...window.store.state.products];
+
+      // Category filter
+      if (activeCategory !== 'all') {
+        prods = prods.filter(p => p.category === activeCategory);
+      }
+
+      // Material filter
+      if (activeMaterials.length > 0) {
+        prods = prods.filter(p => activeMaterials.some(m => p.materials.primaryWood.includes(m) || p.materials.finish.includes(m) || (p.materials.upholstery && p.materials.upholstery.includes(m))));
+      }
+
+      // Price filter
+      if (activePriceRange === 'under-35k') {
+        prods = prods.filter(p => p.price < 35000);
+      } else if (activePriceRange === '35k-60k') {
+        prods = prods.filter(p => p.price >= 35000 && p.price <= 60000);
+      } else if (activePriceRange === 'above-60k') {
+        prods = prods.filter(p => p.price > 60000);
+      }
+
+      // Stock filter
+      if (onlyInStock) {
+        prods = prods.filter(p => p.inStock);
+      }
+
+      // Sorting
+      if (activeSort === 'price-asc') {
+        prods.sort((a, b) => a.price - b.price);
+      } else if (activeSort === 'price-desc') {
+        prods.sort((a, b) => b.price - a.price);
+      } else if (activeSort === 'rating') {
+        prods.sort((a, b) => b.rating - a.rating);
+      }
+
+      // Render items
+      const countEl = document.getElementById('product-count-display');
+      if (countEl) countEl.textContent = prods.length;
+
+      const grid = document.getElementById('shop-products-grid');
+      if (!grid) return;
+
+      if (prods.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">No furniture matches your filters</h3>
+            <p style="color: var(--text-tertiary); margin-bottom: 1.5rem;">Try relaxing your filter parameters or request a bespoke custom design from our craftsmen.</p>
+            <a href="custom-furniture.html" class="btn-gold">Request Custom Piece</a>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = prods.map(p => `
+        <div class="product-card">
+          <div class="product-thumb">
+            <a href="product.html?slug=${p.slug}">
+              <img src="${p.images[0]}" alt="${p.name}" loading="lazy">
+            </a>
+            <div class="product-badges">
+              <span class="product-badge-lead">${p.leadTime.includes('Showroom') ? 'IN SHOWROOM' : 'HANDCRAFTED'}</span>
+            </div>
+            <button class="product-wishlist-btn ${window.store.isInWishlist(p.id) ? 'active' : ''}" onclick="toggleShopWishlist(this, '${p.id}')">
+              <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-meta">
+              <span class="product-category-name">${p.category}</span>
+              <div class="product-rating">
+                <i data-lucide="star" style="width: 13px; height: 13px; fill: var(--accent-gold); color: var(--accent-gold);"></i>
+                <span>${p.rating} (${p.reviewCount})</span>
+              </div>
+            </div>
+            <h4 class="product-title">
+              <a href="product.html?slug=${p.slug}">${p.name}</a>
+            </h4>
+            <div class="product-tagline">${p.tagline}</div>
+            <div class="product-price-row">
+              <span class="product-price">₹${p.price.toLocaleString('en-IN')}</span>
+              ${p.comparePrice ? `<span class="product-compare-price">₹${p.comparePrice.toLocaleString('en-IN')}</span>` : ''}
+            </div>
+            <div class="product-actions">
+              <button class="btn-primary" style="padding: 0.65rem 1rem; font-size: 0.85rem;" onclick="addShopItemToCart('${p.id}')">
+                <i data-lucide="shopping-bag" style="width: 15px; height: 15px;"></i>
+                <span>Add to Bag</span>
+              </button>
+              <a href="product.html?slug=${p.slug}" class="btn-outline" style="padding: 0.65rem 0.85rem;" title="View Details">
+                <i data-lucide="eye" style="width: 15px; height: 15px;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    function addShopItemToCart(prodId) {
+      const product = window.store.state.products.find(p => p.id === prodId);
+      if (product) {
+        window.store.addToCart(product, 1);
+        window.showToast(`Added ${product.name} to your bag!`, 'success');
+        window.openMiniCart();
+      }
+    }
+
+    function toggleShopWishlist(btn, prodId) {
+      const product = window.store.state.products.find(p => p.id === prodId);
+      if (product) {
+        const added = window.store.toggleWishlist(product);
+        btn.classList.toggle('active', added);
+        window.showToast(added ? 'Saved to Wishlist' : 'Removed from Wishlist', 'info');
+      }
+    }
+  </script>
+</body>
+</html>

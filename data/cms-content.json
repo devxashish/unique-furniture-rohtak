@@ -1,0 +1,31 @@
+{
+  "announcementBar": {
+    "text": "Showroom Open 7 Days on Delhi Road, Rohtak • Free White-Glove Delivery & Assembly on Orders Above ₹20,000",
+    "badge": "FESTIVE EDIT",
+    "active": true
+  },
+  "hero": {
+    "tagline": "Architectural Living • Handcrafted in Haryana",
+    "headline": "Furniture Designed Around Your Space.",
+    "subheading": "Experience authentic solid Sheesham wood, Burmese teak, and bespoke made-to-measure craftsmanship. Visit our landmark showroom on Delhi Road, Rohtak or order online with 10-year structural warranty.",
+    "primaryCtaText": "Explore Collection",
+    "primaryCtaLink": "shop.html",
+    "secondaryCtaText": "Customize Your Furniture",
+    "secondaryCtaLink": "custom-furniture.html",
+    "backgroundImage": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1920&auto=format&fit=crop"
+  },
+  "showroom": {
+    "title": "Unique Furniture Flagship Showroom",
+    "address": "Delhi Road, Tilak Nagar, Sector 3(P), Rohtak, Haryana 124001",
+    "phone": "+91 86858 13057",
+    "whatsapp": "+91 86858 13057",
+    "hours": "Monday – Sunday: 10:00 AM – 8:30 PM",
+    "googleMapsEmbedUrl": "https://maps.google.com/maps?q=Delhi+Road,+Tilak+Nagar,+Sector+3(P),+Rohtak,+Haryana+124001&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  },
+  "promotions": {
+    "title": "New Homeowner Privilege",
+    "description": "Get flat 10% off your first room set order with code UNIQUE10 at checkout.",
+    "couponCode": "UNIQUE10",
+    "discountPercent": 10
+  }
+}

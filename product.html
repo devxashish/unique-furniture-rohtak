@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Furniture Specifications & Gallery — Unique Furniture Rohtak</title>
+  <meta name="description" content="View detailed timber specifications, dimensions, finish variants, and customer reviews.">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    .pdp-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .pdp-main-image-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .pdp-main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 300ms ease;
+    }
+    .pdp-thumbs {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+    }
+    .pdp-thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-sm);
+      border: 2px solid transparent;
+      cursor: pointer;
+      overflow: hidden;
+      flex-shrink: 0;
+      opacity: 0.7;
+      transition: all var(--transition-fast);
+    }
+    .pdp-thumb.active, .pdp-thumb:hover {
+      border-color: var(--accent-gold);
+      opacity: 1;
+    }
+    .pdp-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .spec-table tr {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .spec-table td {
+      padding-block: 0.75rem;
+      font-size: 0.875rem;
+    }
+    .spec-table td:first-child {
+      color: var(--text-tertiary);
+      font-weight: 600;
+      width: 35%;
+    }
+    .variant-swatch-group {
+      margin-bottom: 1.5rem;
+    }
+    .swatch-pills {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .swatch-pill {
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .swatch-pill.active {
+      border-color: var(--text-primary);
+      background-color: var(--bg-dark);
+      color: #FFFFFF;
+    }
+    .tab-nav {
+      display: flex;
+      gap: 2rem;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-top: 3.5rem;
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding-bottom: 0.75rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    .tab-btn.active {
+      color: var(--text-primary);
+      border-color: var(--accent-gold);
+    }
+    @media (max-width: 900px) {
+      .pdp-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="badge-pill">SHOWROOM PIECE</span>
+      <span>Inspect in Person at Delhi Road, Rohtak • 10-Year Termite & Structural Guarantee</span>
+      <a href="tel:+918685813057" style="color: var(--accent-gold); font-weight: 600; text-decoration: underline;">+91 86858 13057</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
+          <path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"></path>
+          <path d="M5 18v2"></path>
+          <path d="M19 18v2"></path>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">UNIQUE FURNITURE</span>
+          <span class="brand-sub">ROHTAK</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop Collection</a>
+        <a href="custom-furniture.html" class="nav-link">Custom Studio</a>
+        <a href="reviews.html" class="nav-link">Rohtak Reviews</a>
+        <a href="store.html" class="nav-link">Our Showroom</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="action-btn" title="Wishlist"><i data-lucide="heart" style="width: 20px; height: 20px;"></i></a>
+        <a href="compare.html" class="action-btn" title="Compare"><i data-lucide="sliders-horizontal" style="width: 20px; height: 20px;"></i></a>
+        <button class="action-btn open-cart-btn" title="Bag">
+          <i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i>
+          <span class="action-badge cart-count-badge" style="display: none;">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- PDP Main Section -->
+  <section class="section" style="padding-top: var(--space-xl);">
+    <div class="container">
+      <div id="pdp-breadcrumbs" style="font-size: 0.825rem; color: var(--text-tertiary); margin-bottom: 1.5rem;">
+        <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="breadcrumb-product-name">Furniture Piece</span>
+      </div>
+
+      <div class="pdp-grid">
+        <!-- Gallery Column -->
+        <div class="pdp-gallery">
+          <div class="pdp-main-image-wrap">
+            <img id="pdp-main-img" class="pdp-main-image" src="" alt="Product view">
+          </div>
+          <div class="pdp-thumbs" id="pdp-thumbnails">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Room Scale 3D Dimension Visualizer Card -->
+          <div style="margin-top: 1.5rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <span style="font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                <i data-lucide="box" style="width: 18px; height: 18px; color: var(--accent-gold);"></i>
+                <span>Room Scale & Dimensions Simulator</span>
+              </span>
+              <span class="badge-pill" style="background: var(--bg-subtle); color: var(--text-secondary); border: 1px solid var(--border-subtle);">2D/3D VISUALIZER</span>
+            </div>
+            <p style="font-size: 0.825rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              See how this piece fits inside standard Haryana residential room layouts (10x12 ft bedroom or 14x18 ft living area).
+            </p>
+            <div id="room-canvas-container" style="width: 100%; height: 180px; background: #262320; border-radius: var(--radius-sm); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #FAF8F5;">
+              <canvas id="room-canvas" width="500" height="180" style="width: 100%; height: 100%;"></canvas>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.5rem;">
+              <span>• Scale: 1:30 Room Reference</span>
+              <span>• Doorway clearance required: 32 inches min</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Information Column -->
+        <div class="pdp-info-col">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span id="pdp-category-badge" class="badge-pill" style="background-color: var(--accent-gold-light); color: var(--accent-wood);">LIVING</span>
+            <span id="pdp-leadtime-badge" style="font-size: 0.75rem; font-weight: 600; color: var(--success);">In Stock at Rohtak Showroom</span>
+          </div>
+
+          <h1 id="pdp-title" style="font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.5rem;">Product Name</h1>
+          <p id="pdp-tagline" style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Handcrafted timber specifications</p>
+
+          <!-- Price & Rating Row -->
+          <div style="display: flex; align-items: baseline; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle); margin-bottom: 1.5rem;">
+            <span id="pdp-price" style="font-size: 2rem; font-weight: 700; color: var(--text-primary);">₹0</span>
+            <span id="pdp-compare-price" style="font-size: 1.1rem; color: var(--text-tertiary); text-decoration: line-through;">₹0</span>
+            <span id="pdp-discount-pill" class="badge-pill" style="background: var(--success); color: #fff;">Save 15%</span>
+          </div>
+
+          <!-- Variants Configurator -->
+          <div id="pdp-variants-container">
+            <!-- Injected by product.js -->
+          </div>
+
+          <!-- Actions -->
+          <div style="display: flex; gap: 1rem; margin-block: 1.5rem; flex-wrap: wrap;">
+            <button id="pdp-add-to-cart-btn" class="btn-primary" style="flex-grow: 1; padding: 1rem 1.75rem; font-size: 1rem;">
+              <i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i>
+              <span>Add to Shopping Bag</span>
+            </button>
+            <button id="pdp-wishlist-toggle" class="btn-outline" style="padding: 1rem;" title="Save to Wishlist">
+              <i data-lucide="heart" style="width: 20px; height: 20px;"></i>
+            </button>
+          </div>
+
+          <!-- Haryana Delivery Estimator -->
+          <div style="background: var(--bg-subtle); border-radius: var(--radius-sm); padding: 1.25rem; margin-bottom: 1.5rem;">
+            <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i data-lucide="truck" style="width: 16px; height: 16px; color: var(--accent-gold);"></i>
+              <span>Haryana & Delhi NCR Delivery Check</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" id="pincode-input" placeholder="Enter 6-digit Pincode (e.g. 124001)" maxlength="6" style="flex-grow: 1; padding: 0.5rem 0.75rem; font-size: 0.85rem; border: 1px solid var(--border-medium); border-radius: var(--radius-sm); background: #FFFFFF;">
+              <button class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="checkPincodeDelivery()">Check</button>
+            </div>
+            <div id="pincode-result" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--success); font-weight: 500;">
+              ✓ Free white-glove direct delivery & assembly in Rohtak & NCR
+            </div>
+          </div>
+
+          <!-- Contextual WhatsApp Sales Link -->
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.25rem;">
+            <a id="pdp-whatsapp-btn" href="#" target="_blank" class="btn-outline" style="width: 100%; border-color: #25D366; color: #128C7E;">
+              <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+              <span>Ask a Furniture Expert on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Specifications & Care Tabs -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('specs', this)">Technical Specifications</button>
+        <button class="tab-btn" onclick="switchTab('warranty', this)">10-Year Warranty</button>
+        <button class="tab-btn" onclick="switchTab('care', this)">Wood & Fabric Care</button>
+      </div>
+
+      <div id="tab-specs-content">
+        <table class="spec-table" id="pdp-spec-table">
+          <!-- Injected by product.js -->
+        </table>
+      </div>
+
+      <div id="tab-warranty-content" style="display: none; padding-block: 1rem; max-width: 720px;">
+        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Certified Structural & Termite Warranty</h4>
+        <p style="margin-bottom: 1rem;">Unique Furniture Rohtak guarantees all solid Sheesham and Teak wood frames against internal termite infestation, joint separation, and natural wood cleavage for a full period of 10 years from the date of installation.</p>
+        <p>Our dedicated local service technician visits your residence in Rohtak or neighboring areas for any necessary hardware adjustments or tightening at zero service fee.</p>
+      </div>
+
+      <div id="tab-care-content" style="display: none; padding-block: 1rem; max-width: 720px;">
+        <h4 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Preserving Kiln-Seasoned Hardwoods</h4>
+        <ul id="pdp-care-list" style="display: flex; flex-direction: column; gap: 0.5rem; list-style: disc; margin-left: 1.25rem; font-size: 0.9rem; color: var(--text-secondary);">
+          <!-- Injected by product.js -->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mini-Cart Drawer -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Shopping Bag</div>
+      <button class="drawer-close-btn close-cart-btn"><i data-lucide="x" style="width: 20px; height: 20px;"></i></button>
+    </div>
+    <div class="drawer-body" id="cart-drawer-items"></div>
+    <div class="drawer-footer" id="cart-drawer-footer-actions">
+      <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem;">
+        <span>Total:</span>
+        <span id="cart-drawer-total">₹0</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <a href="cart.html" class="btn-outline" style="padding: 0.75rem 0.5rem; text-align: center;">View Bag</a>
+        <a href="checkout.html" class="btn-gold" style="padding: 0.75rem 0.5rem; text-align: center;">Checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/commerce-adapter.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let currentProduct = null;
+    let selectedVariant = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug') || 'the-royal-sheesham-hydraulic-storage-bed';
+
+      window.store.subscribe('store:ready', () => loadProduct(slug));
+      if (window.store.state.products.length > 0) loadProduct(slug);
+    });
+
+    function loadProduct(slug) {
+      currentProduct = window.store.state.products.find(p => p.slug === slug) || window.store.state.products[0];
+      if (!currentProduct) return;
+
+      document.title = `${currentProduct.name} — Unique Furniture Rohtak`;
+      document.getElementById('breadcrumb-product-name').textContent = currentProduct.name;
+      document.getElementById('pdp-title').textContent = currentProduct.name;
+      document.getElementById('pdp-tagline').textContent = currentProduct.tagline;
+      document.getElementById('pdp-category-badge').textContent = currentProduct.category.toUpperCase();
+      document.getElementById('pdp-leadtime-badge').textContent = currentProduct.leadTime;
+
+      updatePriceDisplay();
+
+      // Main image & thumbs
+      const mainImg = document.getElementById('pdp-main-img');
+      mainImg.src = currentProduct.images[0];
+      mainImg.alt = currentProduct.name;
+
+      const thumbsContainer = document.getElementById('pdp-thumbnails');
+      thumbsContainer.innerHTML = currentProduct.images.map((img, i) => `
+        <div class="pdp-thumb ${i === 0 ? 'active' : ''}" onclick="switchPdpImage(this, '${img}')">
+          <img src="${img}" alt="${currentProduct.name} angle ${i + 1}">
+        </div>
+      `).join('');
+
+      // Render Variants
+      renderVariants();
+
+      // Specifications Table
+      renderSpecsTable();
+
+      // WhatsApp link binding
+      const waMsg = encodeURIComponent(`Hello Unique Furniture Rohtak, I am enquiring about ${currentProduct.name} (SKU: ${currentProduct.sku}) listed at ₹${currentProduct.price.toLocaleString('en-IN')}. Can you share more details or showroom availability?`);
+      document.getElementById('pdp-whatsapp-btn').href = `https://wa.me/918685813057?text=${waMsg}`;
+
+      // Add to Bag Button
+      document.getElementById('pdp-add-to-cart-btn').onclick = () => {
+        window.store.addToCart(currentProduct, 1, selectedVariant);
+        window.showToast(`Added ${currentProduct.name} to shopping bag!`, 'success');
+        window.openMiniCart();
+      };
+
+      // Wishlist
+      const wishBtn = document.getElementById('pdp-wishlist-toggle');
+      wishBtn.classList.toggle('active', window.store.isInWishlist(currentProduct.id));
+      wishBtn.onclick = () => {
+        const added = window.store.toggleWishlist(currentProduct);
+        wishBtn.classList.toggle('active', added);
+        window.showToast(added ? 'Saved to Wishlist' : 'Removed from Wishlist', 'info');
+      };
+
+      // Draw Room Scale Visualizer Canvas
+      drawRoomVisualizer();
+
+      lucide.createIcons();
+    }
+
+    function switchPdpImage(el, src) {
+      document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('pdp-main-img').src = src;
+    }
+
+    function renderVariants() {
+      const container = document.getElementById('pdp-variants-container');
+      if (!container || !currentProduct.variants) return;
+
+      let html = '';
+      if (currentProduct.variants.finishes) {
+        html += `
+          <div class="variant-swatch-group">
+            <div style="font-size: 0.85rem; font-weight: 600;">Solid Wood Finish:</div>
+            <div class="swatch-pills">
+              ${currentProduct.variants.finishes.map((f, i) => `
+                <button class="swatch-pill ${i === 0 ? 'active' : ''}" onclick="selectFinishVariant(this, '${f.name}', ${f.priceDelta})">${f.name}</button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      if (currentProduct.variants.sizes) {
+        html += `
+          <div class="variant-swatch-group">
+            <div style="font-size: 0.85rem; font-weight: 600;">Dimensions / Size:</div>
+            <div class="swatch-pills">
+              ${currentProduct.variants.sizes.map((s, i) => `
+                <button class="swatch-pill ${i === 0 ? 'active' : ''}" onclick="selectSizeVariant(this, '${s.name}', ${s.priceDelta})">${s.name}</button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function selectFinishVariant(el, name, delta) {
+      el.parentElement.querySelectorAll('.swatch-pill').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      selectedVariant = { ...selectedVariant, finish: name, priceDelta: delta };
+      updatePriceDisplay();
+    }
+
+    function selectSizeVariant(el, name, delta) {
+      el.parentElement.querySelectorAll('.swatch-pill').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      selectedVariant = { ...selectedVariant, size: name, priceDelta: delta };
+      updatePriceDisplay();
+    }
+
+    function updatePriceDisplay() {
+      const priceEl = document.getElementById('pdp-price');
+      const compareEl = document.getElementById('pdp-compare-price');
+      const delta = selectedVariant?.priceDelta || 0;
+      const finalPrice = currentProduct.price + delta;
+
+      priceEl.textContent = '₹' + finalPrice.toLocaleString('en-IN');
+      if (currentProduct.comparePrice) {
+        compareEl.textContent = '₹' + (currentProduct.comparePrice + delta).toLocaleString('en-IN');
+      }
+    }
+
+    function renderSpecsTable() {
+      const table = document.getElementById('pdp-spec-table');
+      if (!table || !currentProduct) return;
+
+      table.innerHTML = `
+        <tr><td>Primary Timber</td><td>${currentProduct.materials.primaryWood}</td></tr>
+        <tr><td>Finish Clearcoat</td><td>${currentProduct.materials.finish}</td></tr>
+        <tr><td>Overall Dimensions</td><td>${currentProduct.dimensions.width} (W) × ${currentProduct.dimensions.depth} (D) × ${currentProduct.dimensions.height} (H)</td></tr>
+        <tr><td>Approximate Weight</td><td>${currentProduct.dimensions.weight}</td></tr>
+        <tr><td>Hardware & Gas-Lifts</td><td>${currentProduct.materials.hardware || 'Precision engineered mortise joints'}</td></tr>
+        <tr><td>Structural Warranty</td><td>${currentProduct.warranty}</td></tr>
+        <tr><td>Assembly & Setup</td><td>Free On-Site Technician Installation Included</td></tr>
+        <tr><td>SKU Identifier</td><td>${currentProduct.sku}</td></tr>
+      `;
+
+      const careList = document.getElementById('pdp-care-list');
+      if (careList && currentProduct.careInstructions) {
+        careList.innerHTML = currentProduct.careInstructions.map(c => `<li>${c}</li>`).join('');
+      }
+    }
+
+    function switchTab(tab, el) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('tab-specs-content').style.display = tab === 'specs' ? 'block' : 'none';
+      document.getElementById('tab-warranty-content').style.display = tab === 'warranty' ? 'block' : 'none';
+      document.getElementById('tab-care-content').style.display = tab === 'care' ? 'block' : 'none';
+    }
+
+    function checkPincodeDelivery() {
+      const val = document.getElementById('pincode-input').value.trim();
+      const res = document.getElementById('pincode-result');
+      if (val.length === 6 && /^\d+$/.test(val)) {
+        if (val.startsWith('124') || val.startsWith('110') || val.startsWith('122') || val.startsWith('131')) {
+          res.innerHTML = `✓ Pincode ${val}: Verified for direct white-glove delivery within 48-72 hrs. Free assembly included.`;
+          res.style.color = 'var(--success)';
+        } else {
+          res.innerHTML = `✓ Pincode ${val}: Dispatch available across North India via protected road cargo logistics.`;
+          res.style.color = 'var(--text-primary)';
+        }
+      } else {
+        res.innerHTML = '✕ Please enter a valid 6-digit Indian postal code.';
+        res.style.color = 'var(--error)';
+      }
+    }
+
+    /* 2D/3D Room Simulator Canvas */
+    function drawRoomVisualizer() {
+      const canvas = document.getElementById('room-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw Room Walls
+      ctx.strokeStyle = '#44403C';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(30, 20, 440, 140);
+
+      // Floor gridlines
+      ctx.strokeStyle = '#2E2A27';
+      ctx.lineWidth = 1;
+      for (let x = 60; x < 460; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 20); ctx.lineTo(x, 160); ctx.stroke();
+      }
+      for (let y = 40; y < 150; y += 30) {
+        ctx.beginPath(); ctx.moveTo(30, y); ctx.lineTo(470, y); ctx.stroke();
+      }
+
+      // Furniture Object Placement
+      ctx.fillStyle = '#B88E2F';
+      ctx.fillRect(170, 45, 160, 90);
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.strokeRect(170, 45, 160, 90);
+
+      // Labels
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 11px Plus Jakarta Sans, sans-serif';
+      ctx.fillText(`${currentProduct.name}`, 180, 85);
+      ctx.fillStyle = '#D1C7BA';
+      ctx.font = '10px Plus Jakarta Sans, sans-serif';
+      ctx.fillText(`${currentProduct.dimensions.width} x ${currentProduct.dimensions.depth}`, 180, 105);
+
+      // Room dimensions label
+      ctx.fillStyle = '#A8A29E';
+      ctx.fillText('← 14 FT ROOM WALL →', 190, 15);
+      ctx.fillText('10 FT', 5, 90);
+    }
+  </script>
+</body>
+</html>

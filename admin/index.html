@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Operations & Commerce Dashboard — Unique Furniture Rohtak</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/admin.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Admin Login Gate Overlay -->
+  <div id="admin-login-modal" style="display: flex; position: fixed; inset: 0; background: var(--bg-dark); z-index: 5000; align-items: center; justify-content: center; padding: 1rem;">
+    <div style="background: var(--bg-surface); max-width: 400px; width: 100%; border-radius: var(--radius-sm); padding: 2.5rem; text-align: center; box-shadow: var(--shadow-xl);">
+      <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--accent-gold-light); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+        <i data-lucide="shield-lock" style="width: 26px; height: 26px;"></i>
+      </div>
+      <h2 style="font-size: 1.4rem; margin-bottom: 0.25rem;">Unique Furniture Admin</h2>
+      <p style="font-size: 0.825rem; color: var(--text-tertiary); margin-bottom: 1.5rem;">Delhi Road Store Operations Hub</p>
+      
+      <form onsubmit="handleAdminLogin(event)">
+        <div style="margin-bottom: 1rem; text-align: left;">
+          <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Passkey Access</label>
+          <input type="password" id="admin-pass-input" placeholder="Enter 'admin123' or master passkey" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-medium); border-radius: var(--radius-sm);">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 0.75rem;">Unlock Operations</button>
+        <div style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-tertiary);">
+          Default Demo Passkey: <code>admin123</code>
+        </div>
+        <a href="../index.html" style="display: inline-block; margin-top: 1.25rem; font-size: 0.8rem; color: var(--accent-gold);">← Back to Storefront</a>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard Layout -->
+  <div class="admin-layout" id="admin-app-layout" style="display: none;">
+    <!-- Mobile Admin Top Bar -->
+    <header class="admin-mobile-header">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width: 20px; height: 20px; color: var(--accent-gold);">
+          <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
+          <path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"></path>
+          <path d="M5 18v2"></path>
+          <path d="M19 18v2"></path>
+        </svg>
+        <div style="font-weight: 700; font-size: 0.95rem; color: #FFFFFF; letter-spacing: 0.08em;">UNIQUE ADMIN</div>
+      </div>
+      <button class="admin-mobile-toggle" onclick="toggleAdminMobileNav()" aria-label="Toggle Navigation Menu">
+        <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+      </button>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-brand">
+        <div style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: #FFFFFF;">UNIQUE FURNITURE</div>
+        <div style="font-size: 0.7rem; color: var(--accent-gold); letter-spacing: 0.1em;">ROHTAK MANAGEMENT</div>
+      </div>
+
+      <nav class="admin-nav">
+        <div class="admin-nav-item active" onclick="switchAdminTab('overview', this)">
+          <i data-lucide="layout-dashboard" style="width: 18px; height: 18px;"></i>
+          <span>Overview</span>
+        </div>
+        <div class="admin-nav-item" onclick="switchAdminTab('products', this)">
+          <i data-lucide="package" style="width: 18px; height: 18px;"></i>
+          <span>Products (CRUD)</span>
+        </div>
+        <div class="admin-nav-item" onclick="switchAdminTab('orders', this)">
+          <i data-lucide="shopping-cart" style="width: 18px; height: 18px;"></i>
+          <span>Orders Pipeline</span>
+        </div>
+        <div class="admin-nav-item" onclick="switchAdminTab('quotes', this)">
+          <i data-lucide="file-text" style="width: 18px; height: 18px;"></i>
+          <span>Quote Requests CRM</span>
+        </div>
+        <div class="admin-nav-item" onclick="switchAdminTab('inventory', this)">
+          <i data-lucide="boxes" style="width: 18px; height: 18px;"></i>
+          <span>Stock & Inventory</span>
+        </div>
+        <div class="admin-nav-item" onclick="switchAdminTab('cms', this)">
+          <i data-lucide="sliders" style="width: 18px; height: 18px;"></i>
+          <span>Homepage CMS</span>
+        </div>
+      </nav>
+
+      <div style="padding-top: 1.5rem; border-top: 1px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center;">
+        <a href="../index.html" target="_blank" style="color: var(--accent-gold); font-size: 0.8rem; display: flex; align-items: center; gap: 0.35rem;">
+          <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+          <span>View Store</span>
+        </a>
+        <button onclick="adminLogout()" style="background: none; border: none; color: var(--error); font-size: 0.8rem; cursor: pointer;">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Working Area -->
+    <main class="admin-main">
+      <!-- Topbar -->
+      <div class="admin-topbar">
+        <div>
+          <h1 class="admin-title" id="admin-view-title">Executive Overview</h1>
+          <div style="font-size: 0.85rem; color: var(--text-tertiary);">Rohtak Flagship Operations & Online Engine</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span class="badge-pill" style="background: var(--success-bg); color: var(--success);">System Live • LocalStorage Synced</span>
+          <button class="btn-gold" style="padding: 0.6rem 1rem; font-size: 0.85rem;" onclick="openAddProductModal()">
+            <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+            <span>Add Furniture</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab 1: Overview -->
+      <div id="tab-view-overview" class="admin-tab-pane">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-title">Total Orders Value</div>
+            <div class="metric-value" id="stat-total-sales">₹0</div>
+            <span class="metric-badge">All Orders Confirmed</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Active Orders</div>
+            <div class="metric-value" id="stat-total-orders">0</div>
+            <span class="metric-badge">Ready for Rohtak Dispatch</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Inbound Custom Quotes</div>
+            <div class="metric-value" id="stat-total-quotes">0</div>
+            <span class="metric-badge" style="color: var(--warning);">Pending Workshop Review</span>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Total Catalog SKUs</div>
+            <div class="metric-value" id="stat-total-products">8</div>
+            <span class="metric-badge">Across 7 Categories</span>
+          </div>
+        </div>
+
+        <div class="overview-two-col">
+          <!-- Recent Orders Card -->
+          <div class="admin-table-card">
+            <div class="admin-table-header">
+              <h3 style="font-size: 1.1rem;">Recent Confirmed Orders</h3>
+              <button class="btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="switchAdminTab('orders')">View All</button>
+            </div>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="overview-recent-orders">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Recent Custom Quotes Card -->
+          <div class="admin-table-card">
+            <div class="admin-table-header">
+              <h3 style="font-size: 1.1rem;">Inbound Custom Quotes</h3>
+              <button class="btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="switchAdminTab('quotes')">View CRM</button>
+            </div>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Quote ID</th>
+                  <th>Customer</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="overview-recent-quotes">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Products (CRUD) -->
+      <div id="tab-view-products" class="admin-tab-pane" style="display: none;">
+        <div class="admin-table-card">
+          <div class="admin-table-header">
+            <h3 style="font-size: 1.1rem;">Furniture Catalog (Full CRUD)</h3>
+            <button class="btn-gold" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="openAddProductModal()">+ Add New Furniture</button>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Piece</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>SKU</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-products-table-body">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: Orders Pipeline -->
+      <div id="tab-view-orders" class="admin-tab-pane" style="display: none;">
+        <div class="admin-table-card">
+          <div class="admin-table-header">
+            <h3 style="font-size: 1.1rem;">Customer Orders Pipeline</h3>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>City/Locality</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-table-body">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 4: Quotes CRM -->
+      <div id="tab-view-quotes" class="admin-tab-pane" style="display: none;">
+        <div class="admin-table-card">
+          <div class="admin-table-header">
+            <h3 style="font-size: 1.1rem;">Bespoke Quote Consultation Pipeline</h3>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Customer & Locality</th>
+                <th>Furniture Spec</th>
+                <th>Dimensions</th>
+                <th>Budget Tier</th>
+                <th>Status</th>
+                <th>Direct WhatsApp</th>
+              </tr>
+            </thead>
+            <tbody id="admin-quotes-table-body">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 5: Inventory -->
+      <div id="tab-view-inventory" class="admin-tab-pane" style="display: none;">
+        <div class="admin-table-card">
+          <div class="admin-table-header">
+            <h3 style="font-size: 1.1rem;">Live Stock Control & Low Stock Indicators</h3>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Current Stock</th>
+                <th>Status</th>
+                <th>Adjust Stock</th>
+              </tr>
+            </thead>
+            <tbody id="admin-inventory-table-body">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 6: CMS Config -->
+      <div id="tab-view-cms" class="admin-tab-pane" style="display: none;">
+        <div class="admin-table-card" style="padding: 2rem;">
+          <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem;">Homepage Live Content Management (No Code Edit)</h3>
+          <form onsubmit="handleCmsSave(event)">
+            <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+              <div>
+                <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">Announcement Bar Text</label>
+                <input type="text" id="cms-announce-text" class="form-control" style="width: 100%;">
+              </div>
+              <div>
+                <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">Hero Headline</label>
+                <input type="text" id="cms-hero-headline" class="form-control" style="width: 100%;">
+              </div>
+              <div>
+                <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">Hero Subheading</label>
+                <textarea id="cms-hero-subheading" class="form-control" rows="3" style="width: 100%;"></textarea>
+              </div>
+              <div>
+                <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.35rem;">Showroom Operating Hours</label>
+                <input type="text" id="cms-hours" class="form-control" style="width: 100%;">
+              </div>
+              <div>
+                <button type="submit" class="btn-gold" style="padding: 0.75rem 1.5rem;">Save Live CMS Changes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Product Modal (Add / Edit) -->
+  <div id="product-modal-backdrop" class="admin-modal-backdrop">
+    <div class="admin-modal">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 id="product-modal-title" style="font-size: 1.3rem;">Add Furniture Piece</h3>
+        <button onclick="closeProductModal()" style="background: none; border: none; cursor: pointer; font-size: 1.25rem;">✕</button>
+      </div>
+      <form id="product-crud-form" onsubmit="handleProductSave(event)">
+        <input type="hidden" id="crud-prod-id">
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Product Name *</label>
+            <input type="text" id="crud-prod-name" required class="form-control" style="width: 100%;" placeholder="e.g. Amber Teak Dining Set">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Category *</label>
+              <select id="crud-prod-category" class="form-control" style="width: 100%;">
+                <option value="living-room">Living Room</option>
+                <option value="bedroom">Bedroom</option>
+                <option value="dining">Dining</option>
+                <option value="office">Office</option>
+                <option value="mattresses">Mattresses</option>
+                <option value="outdoor">Outdoor</option>
+                <option value="modular-kitchen">Modular Kitchen</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">SKU *</label>
+              <input type="text" id="crud-prod-sku" required class="form-control" style="width: 100%;" placeholder="UF-CUSTOM-09">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Price (₹ INR) *</label>
+              <input type="number" id="crud-prod-price" required class="form-control" style="width: 100%;" placeholder="45000">
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Current Stock *</label>
+              <input type="number" id="crud-prod-stock" required class="form-control" style="width: 100%;" placeholder="5">
+            </div>
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Primary Image URL *</label>
+            <input type="url" id="crud-prod-image" required class="form-control" style="width: 100%;" placeholder="https://images.unsplash.com/...">
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Wood / Timber Details *</label>
+            <input type="text" id="crud-prod-wood" required class="form-control" style="width: 100%;" placeholder="100% Solid Seasoned Sheesham Wood">
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem;">
+            <button type="button" class="btn-outline" onclick="closeProductModal()">Cancel</button>
+            <button type="submit" class="btn-gold">Save Furniture</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Core Scripts -->
+  <script src="../js/store.js"></script>
+  <script src="../js/commerce-adapter.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check session
+      if (sessionStorage.getItem('uf_admin_auth') === 'true') {
+        document.getElementById('admin-login-modal').style.display = 'none';
+        document.getElementById('admin-app-layout').style.display = 'grid';
+        loadAdminDashboard();
+      }
+      lucide.createIcons();
+    });
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const pass = document.getElementById('admin-pass-input').value;
+      if (pass === 'admin123' || pass === 'unique2026') {
+        sessionStorage.setItem('uf_admin_auth', 'true');
+        document.getElementById('admin-login-modal').style.display = 'none';
+        document.getElementById('admin-app-layout').style.display = 'grid';
+        loadAdminDashboard();
+        window.showToast("Welcome to Unique Furniture Operations", "success");
+      } else {
+        window.showToast("Invalid passkey. Try 'admin123'", "error");
+      }
+    }
+
+    function adminLogout() {
+      sessionStorage.removeItem('uf_admin_auth');
+      window.location.reload();
+    }
+
+    function toggleAdminMobileNav() {
+      const sidebar = document.getElementById('admin-sidebar');
+      if (sidebar) {
+        sidebar.classList.toggle('open');
+      }
+    }
+
+    function switchAdminTab(tabName, el) {
+      if (el) {
+        document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'));
+        el.classList.add('active');
+      }
+      document.querySelectorAll('.admin-tab-pane').forEach(p => p.style.display = 'none');
+      document.getElementById(`tab-view-${tabName}`).style.display = 'block';
+
+      const titles = {
+        overview: 'Executive Overview',
+        products: 'Furniture Products Catalog',
+        orders: 'Customer Orders Pipeline',
+        quotes: 'Custom Quote Inbound CRM',
+        inventory: 'Live Stock Control',
+        cms: 'Homepage CMS Content'
+      };
+      document.getElementById('admin-view-title').textContent = titles[tabName] || 'Admin Dashboard';
+      
+      // Auto-close mobile sidebar if open
+      const sidebar = document.getElementById('admin-sidebar');
+      if (sidebar && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+      }
+    }
+
+    function loadAdminDashboard() {
+      renderOverviewStats();
+      renderProductsTable();
+      renderOrdersTable();
+      renderQuotesTable();
+      renderInventoryTable();
+      populateCmsForm();
+      lucide.createIcons();
+    }
+
+    function renderOverviewStats() {
+      const orders = window.store.state.orders || [];
+      const quotes = window.store.state.quotes || [];
+      const prods = window.store.state.products || [];
+
+      const totalSales = orders.reduce((sum, o) => sum + (o.pricing?.grandTotal || 0), 0);
+      document.getElementById('stat-total-sales').textContent = '₹' + totalSales.toLocaleString('en-IN');
+      document.getElementById('stat-total-orders').textContent = orders.length;
+      document.getElementById('stat-total-quotes').textContent = quotes.length;
+      document.getElementById('stat-total-products').textContent = prods.length;
+
+      // Recent orders overview
+      const ordTbody = document.getElementById('overview-recent-orders');
+      if (orders.length === 0) {
+        ordTbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color: var(--text-tertiary);">No online orders placed yet.</td></tr>';
+      } else {
+        ordTbody.innerHTML = orders.slice(0, 4).map(o => `
+          <tr>
+            <td><strong>${o.orderId}</strong></td>
+            <td>${o.customer.fullName}</td>
+            <td>₹${o.pricing.grandTotal.toLocaleString('en-IN')}</td>
+            <td><span class="status-pill confirmed">${o.orderStatus}</span></td>
+          </tr>
+        `).join('');
+      }
+
+      // Recent quotes overview
+      const qTbody = document.getElementById('overview-recent-quotes');
+      if (quotes.length === 0) {
+        qTbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color: var(--text-tertiary);">No quotes submitted yet.</td></tr>';
+      } else {
+        qTbody.innerHTML = quotes.slice(0, 4).map(q => `
+          <tr>
+            <td><strong>${q.id}</strong></td>
+            <td>${q.customer.name} (${q.customer.locality})</td>
+            <td>${q.furnitureType}</td>
+            <td><span class="status-pill new">${q.status}</span></td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    function renderProductsTable() {
+      const tbody = document.getElementById('admin-products-table-body');
+      const prods = window.store.state.products || [];
+
+      tbody.innerHTML = prods.map(p => `
+        <tr>
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <img src="${p.images[0]}" style="width: 44px; height: 44px; object-fit: cover; border-radius: var(--radius-sm);">
+              <div>
+                <div style="font-weight: 600;">${p.name}</div>
+                <div style="font-size: 0.75rem; color: var(--text-tertiary);">${p.materials.primaryWood}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge-pill">${p.category}</span></td>
+          <td style="font-weight: 700;">₹${p.price.toLocaleString('en-IN')}</td>
+          <td>${p.stockQuantity} units</td>
+          <td><code>${p.sku}</code></td>
+          <td>
+            <div style="display: flex; gap: 0.5rem;">
+              <button onclick="editProduct('${p.id}')" style="background: none; border: none; color: var(--accent-gold); cursor: pointer;">Edit</button>
+              <button onclick="deleteProduct('${p.id}')" style="background: none; border: none; color: var(--error); cursor: pointer;">Delete</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderOrdersTable() {
+      const tbody = document.getElementById('admin-orders-table-body');
+      const orders = window.store.state.orders || [];
+
+      if (orders.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 2rem;">No orders placed yet. Test by completing a checkout from the storefront!</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = orders.map(o => `
+        <tr>
+          <td><strong>${o.orderId}</strong></td>
+          <td>${new Date(o.createdAt).toLocaleDateString()}</td>
+          <td>${o.customer.fullName}<br><small>${o.customer.phone}</small></td>
+          <td>${o.customer.shippingAddress.locality}, ${o.customer.shippingAddress.city}</td>
+          <td style="font-weight: 700;">₹${o.pricing.grandTotal.toLocaleString('en-IN')}</td>
+          <td><small>${o.paymentMethod}</small></td>
+          <td><span class="status-pill confirmed">${o.orderStatus}</span></td>
+          <td>
+            <select onchange="window.store.updateOrderStatus('${o.orderId}', this.value); window.showToast('Order status updated', 'success'); loadAdminDashboard();" style="padding: 0.25rem; font-size: 0.8rem; border-radius: 4px;">
+              <option value="Confirmed" ${o.orderStatus === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+              <option value="Processing" ${o.orderStatus === 'Processing' ? 'selected' : ''}>Processing</option>
+              <option value="Ready for Dispatch" ${o.orderStatus === 'Ready for Dispatch' ? 'selected' : ''}>Ready</option>
+              <option value="Delivered" ${o.orderStatus === 'Delivered' ? 'selected' : ''}>Delivered</option>
+            </select>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderQuotesTable() {
+      const tbody = document.getElementById('admin-quotes-table-body');
+      const quotes = window.store.state.quotes || [];
+
+      tbody.innerHTML = quotes.map(q => {
+        const waMsg = encodeURIComponent(`Hello ${q.customer.name}, Unique Furniture Rohtak received your custom quote request for ${q.furnitureType} (${q.roomDimensions}). Can we schedule a showroom consultation or send preliminary sketches?`);
+        return `
+          <tr>
+            <td><strong>${q.id}</strong></td>
+            <td>${q.customer.name}<br><small>${q.customer.locality}</small></td>
+            <td><strong>${q.furnitureType}</strong><br><small>${q.preferredMaterial}</small></td>
+            <td>${q.roomDimensions}</td>
+            <td><span class="badge-pill" style="background: var(--bg-subtle); color: var(--text-primary);">${q.budgetTier}</span></td>
+            <td>
+              <select onchange="window.store.updateQuoteStatus('${q.id}', this.value); window.showToast('Quote updated', 'success');" style="padding: 0.2rem; font-size: 0.8rem;">
+                <option value="New" ${q.status === 'New' ? 'selected' : ''}>New</option>
+                <option value="Contacted" ${q.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                <option value="Designing" ${q.status === 'Designing' ? 'selected' : ''}>Designing</option>
+                <option value="Approved" ${q.status === 'Approved' ? 'selected' : ''}>Approved</option>
+              </select>
+            </td>
+            <td>
+              <a href="https://wa.me/${q.customer.phone.replace(/[^0-9]/g, '')}?text=${waMsg}" target="_blank" class="btn-outline" style="padding: 0.25rem 0.6rem; font-size: 0.75rem; border-color: #25D366; color: #128C7E;">
+                WhatsApp Client
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderInventoryTable() {
+      const tbody = document.getElementById('admin-inventory-table-body');
+      const prods = window.store.state.products || [];
+
+      tbody.innerHTML = prods.map(p => `
+        <tr>
+          <td><strong>${p.name}</strong> (${p.sku})</td>
+          <td style="font-size: 1.1rem; font-weight: 700;">${p.stockQuantity}</td>
+          <td>
+            <span class="badge-pill" style="background: ${p.stockQuantity > 2 ? 'var(--success-bg)' : 'var(--error-bg)'}; color: ${p.stockQuantity > 2 ? 'var(--success)' : 'var(--error)'};">
+              ${p.stockQuantity > 2 ? 'HEALTHY STOCK' : 'LOW STOCK ALERT'}
+            </span>
+          </td>
+          <td>
+            <button class="btn-outline" style="padding: 0.2rem 0.5rem;" onclick="adjustStock('${p.id}', -1)">-1</button>
+            <button class="btn-outline" style="padding: 0.2rem 0.5rem;" onclick="adjustStock('${p.id}', 1)">+1</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function adjustStock(id, change) {
+      const p = window.store.state.products.find(x => x.id === id);
+      if (p) {
+        p.stockQuantity = Math.max(0, p.stockQuantity + change);
+        p.inStock = p.stockQuantity > 0;
+        window.store.saveProduct(p);
+        loadAdminDashboard();
+        window.showToast("Stock quantity updated", "info");
+      }
+    }
+
+    function openAddProductModal() {
+      document.getElementById('crud-prod-id').value = '';
+      document.getElementById('product-crud-form').reset();
+      document.getElementById('product-modal-title').textContent = 'Add Furniture Piece';
+      document.getElementById('product-modal-backdrop').classList.add('open');
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal-backdrop').classList.remove('open');
+    }
+
+    function editProduct(id) {
+      const p = window.store.state.products.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('crud-prod-id').value = p.id;
+      document.getElementById('crud-prod-name').value = p.name;
+      document.getElementById('crud-prod-category').value = p.category;
+      document.getElementById('crud-prod-sku').value = p.sku;
+      document.getElementById('crud-prod-price').value = p.price;
+      document.getElementById('crud-prod-stock').value = p.stockQuantity;
+      document.getElementById('crud-prod-image').value = p.images[0];
+      document.getElementById('crud-prod-wood').value = p.materials.primaryWood;
+      document.getElementById('product-modal-title').textContent = 'Edit Furniture Piece';
+      document.getElementById('product-modal-backdrop').classList.add('open');
+    }
+
+    function deleteProduct(id) {
+      if (confirm("Are you sure you want to remove this piece from the catalog?")) {
+        window.store.deleteProduct(id);
+        loadAdminDashboard();
+        window.showToast("Furniture removed from catalogue", "info");
+      }
+    }
+
+    function handleProductSave(e) {
+      e.preventDefault();
+      const id = document.getElementById('crud-prod-id').value;
+      const productPayload = {
+        name: document.getElementById('crud-prod-name').value,
+        category: document.getElementById('crud-prod-category').value,
+        sku: document.getElementById('crud-prod-sku').value,
+        price: parseInt(document.getElementById('crud-prod-price').value),
+        stockQuantity: parseInt(document.getElementById('crud-prod-stock').value),
+        inStock: parseInt(document.getElementById('crud-prod-stock').value) > 0,
+        leadTime: "Ready for showroom dispatch in 48 hours",
+        tagline: "Solid handcrafted timber construction",
+        images: [document.getElementById('crud-prod-image').value],
+        materials: {
+          primaryWood: document.getElementById('crud-prod-wood').value,
+          finish: "Natural Satin Polyurethane Clearcoat"
+        },
+        dimensions: {
+          width: "Standard", depth: "Standard", height: "Standard", weight: "N/A"
+        },
+        warranty: "10-Year Structural & Termite Warranty"
+      };
+
+      if (id) productPayload.id = id;
+      window.store.saveProduct(productPayload);
+      closeProductModal();
+      loadAdminDashboard();
+      window.showToast("Product saved successfully!", "success");
+    }
+
+    function populateCmsForm() {
+      const cms = window.store.state.cms;
+      if (!cms) return;
+      if (cms.announcementBar) document.getElementById('cms-announce-text').value = cms.announcementBar.text || '';
+      if (cms.hero) {
+        document.getElementById('cms-hero-headline').value = cms.hero.headline || '';
+        document.getElementById('cms-hero-subheading').value = cms.hero.subheading || '';
+      }
+      if (cms.showroom) document.getElementById('cms-hours').value = cms.showroom.hours || '';
+    }
+
+    function handleCmsSave(e) {
+      e.preventDefault();
+      const currentCms = window.store.state.cms || {};
+      const updated = {
+        ...currentCms,
+        announcementBar: {
+          ...currentCms.announcementBar,
+          text: document.getElementById('cms-announce-text').value
+        },
+        hero: {
+          ...currentCms.hero,
+          headline: document.getElementById('cms-hero-headline').value,
+          subheading: document.getElementById('cms-hero-subheading').value
+        },
+        showroom: {
+          ...currentCms.showroom,
+          hours: document.getElementById('cms-hours').value
+        }
+      };
+
+      window.store.updateCMSContent(updated);
+      window.showToast("CMS Content updated live!", "success");
+    }
+  </script>
+</body>
+</html>

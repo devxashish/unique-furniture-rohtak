@@ -1,0 +1,442 @@
+[
+  {
+    "id": "prod-001",
+    "slug": "the-royal-sheesham-hydraulic-storage-bed",
+    "name": "The Royal Sheesham Hydraulic Bed",
+    "tagline": "Solid Indian Rosewood with German Gas-Lift Underbed Storage",
+    "category": "bedroom",
+    "subcategory": "beds",
+    "price": 49500,
+    "comparePrice": 59900,
+    "rating": 4.9,
+    "reviewCount": 42,
+    "sku": "UF-BED-001",
+    "inStock": true,
+    "stockQuantity": 8,
+    "featured": true,
+    "isCustomizable": true,
+    "leadTime": "Ready for delivery in 48 hours",
+    "dimensions": {
+      "width": "76 in (193 cm)",
+      "depth": "84 in (213 cm)",
+      "height": "48 in (122 cm)",
+      "seatingHeight": "16 in (40 cm)",
+      "weight": "95 kg"
+    },
+    "materials": {
+      "primaryWood": "100% Seasoned Grade-A Solid Sheesham Wood",
+      "finish": "Natural Walnut Matte Satin Polyurethane",
+      "hardware": "EBCO German Heavy-Duty Gas Lift Pistons (Supports up to 250 kg)",
+      "upholstery": "High-density cushioned lumbar headrest in Sandstone Bouclé"
+    },
+    "warranty": "10-Year Structural & Termite Warranty with Free Annual Inspection",
+    "images": [
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1540518614846-7ede433c4ef0?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "finishes": [
+        { "name": "Natural Walnut", "hex": "#5C4033", "priceDelta": 0 },
+        { "name": "Deep Teak Stain", "hex": "#78350F", "priceDelta": 1500 },
+        { "name": "Honey Sheesham", "hex": "#B45309", "priceDelta": 0 }
+      ],
+      "sizes": [
+        { "name": "King Size (72 x 78 in)", "priceDelta": 0 },
+        { "name": "Queen Size (60 x 78 in)", "priceDelta": -4000 }
+      ],
+      "fabrics": [
+        { "name": "Sandstone Bouclé", "hex": "#E5DFD5", "priceDelta": 0 },
+        { "name": "Charcoal Slate Velvet", "hex": "#333333", "priceDelta": 1200 }
+      ]
+    },
+    "features": [
+      "Zero-creak mortise and tenon joint construction engineered for a lifetime",
+      "Spacious dual-compartment hydraulic storage for quilts, extra pillows, and luggage",
+      "Termite-treated, kiln-seasoned hardwood moisture-tested below 12%",
+      "Direct white-glove delivery and assembly included across Rohtak & NCR"
+    ],
+    "careInstructions": [
+      "Wipe clean with a soft dry cotton cloth along the grain direction",
+      "Avoid direct placement in front of continuous air conditioning vents or damp walls",
+      "Apply natural beeswax polish once every 2 years to preserve luster"
+    ]
+  },
+  {
+    "id": "prod-002",
+    "slug": "haveli-monolith-6-seater-dining-table",
+    "name": "Haveli Monolith 6-Seater Dining Set",
+    "tagline": "Architectural Solid Teak Table with 6 Hand-Carved Ergonomic Chairs",
+    "category": "dining",
+    "subcategory": "dining-tables",
+    "price": 54000,
+    "comparePrice": 66500,
+    "rating": 4.9,
+    "reviewCount": 31,
+    "sku": "UF-DIN-002",
+    "inStock": true,
+    "stockQuantity": 5,
+    "featured": true,
+    "isCustomizable": true,
+    "leadTime": "In Showroom / Dispatches in 24 hrs",
+    "dimensions": {
+      "width": "72 in (183 cm)",
+      "depth": "36 in (91 cm)",
+      "height": "30 in (76 cm)",
+      "seatingHeight": "18 in (45 cm)",
+      "weight": "85 kg"
+    },
+    "materials": {
+      "primaryWood": "100% Solid Burmese Teakwood & Seasoned Sheesham Legs",
+      "finish": "Heat & Liquid Resistant Italian Polyurethane Clearcoat",
+      "hardware": "Concealed steel structural bracing beneath tabletop",
+      "upholstery": "Stain-resistant textured linen weave cushions (High Resilience foam)"
+    },
+    "warranty": "10-Year Structural Guarantee on Tabletop and Chairs",
+    "images": [
+      "https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1533779283484-84e1b8eb496f?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "finishes": [
+        { "name": "Raw Natural Teak", "hex": "#A05A2C", "priceDelta": 0 },
+        { "name": "Smoked Oak Satin", "hex": "#3E2723", "priceDelta": 2000 }
+      ],
+      "sizes": [
+        { "name": "6-Seater (72 x 36 in)", "priceDelta": 0 },
+        { "name": "8-Seater (96 x 40 in)", "priceDelta": 14000 }
+      ]
+    },
+    "features": [
+      "Beveled architectural edge profile preventing forearm pressure marks",
+      "Scratch, hot-curry, and moisture-resistant surface treatment",
+      "Cushioned backrests engineered for extended dinner conversations",
+      "Custom table dimensions available for specific Rohtak home dining spaces"
+    ],
+    "careInstructions": [
+      "Use coasters for boiling hot vessels; wipe spills immediately with damp cloth",
+      "Clean woodwork with gentle soap solution; avoid harsh abrasive detergents"
+    ]
+  },
+  {
+    "id": "prod-003",
+    "slug": "l-shape-cloud-lounge-sectional-sofa",
+    "name": "Cloud Lounge L-Shape Sectional Sofa",
+    "tagline": "Deep-Seated Luxury Modular Sofa in Premium Textured Bouclé",
+    "category": "living-room",
+    "subcategory": "sofas",
+    "price": 62500,
+    "comparePrice": 75000,
+    "rating": 5.0,
+    "reviewCount": 49,
+    "sku": "UF-SOF-003",
+    "inStock": true,
+    "stockQuantity": 6,
+    "featured": true,
+    "isCustomizable": true,
+    "leadTime": "Ships in 3-5 days / Custom sizing 7 days",
+    "dimensions": {
+      "width": "112 in (284 cm)",
+      "depth": "68 in Chaise / 38 in Sofa",
+      "height": "32 in (81 cm)",
+      "seatingHeight": "17 in (43 cm)",
+      "weight": "110 kg"
+    },
+    "materials": {
+      "primaryWood": "Kiln-Dried Solid Salwood & Hardwood Pine Internal Frame",
+      "finish": "Concealed Sturdy Teak Feet with Brass Accent Caps",
+      "hardware": "Interlocking modular German sectional connectors",
+      "upholstery": "High-Durability Oeko-Tex Bouclé with High-Resilience 40D Foam & Down Layer"
+    },
+    "warranty": "5-Year Frame & Sag-Free Cushion Guarantee",
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "finishes": [
+        { "name": "Left Lounger Orientation", "hex": "#1C1917", "priceDelta": 0 },
+        { "name": "Right Lounger Orientation", "hex": "#44403C", "priceDelta": 0 }
+      ],
+      "sizes": [
+        { "name": "Standard 4-Seater + Chaise", "priceDelta": 0 },
+        { "name": "Grand 6-Seater Double Lounger", "priceDelta": 18000 }
+      ],
+      "fabrics": [
+        { "name": "Warm Sand Bouclé", "hex": "#E7E0D3", "priceDelta": 0 },
+        { "name": "Smoky Charcoal Textured Weave", "hex": "#374151", "priceDelta": 1500 },
+        { "name": "Forest Green Muted Velvet", "hex": "#1E392A", "priceDelta": 2500 }
+      ]
+    },
+    "features": [
+      "Cloud-like sink-in comfort with high-density multi-layer memory foam cushioning",
+      "Stain-resistant nanotechnology upholstery repel water, tea, and food spills",
+      "Reinforced serpentine spring suspension ensuring zero sag over years of use",
+      "Modular design easily separates for entry through standard elevator or stairwell doors"
+    ],
+    "careInstructions": [
+      "Vacuum monthly with soft brush attachment to remove dust fibers",
+      "Blot unexpected liquid spills immediately using clean, dry micro-fiber cloth"
+    ]
+  },
+  {
+    "id": "prod-004",
+    "slug": "zenith-executive-solid-teak-office-desk",
+    "name": "Zenith Executive Teak Office Desk",
+    "tagline": "Minimalist Architectural Workstation with Concealed Cable Management",
+    "category": "office",
+    "subcategory": "study-tables",
+    "price": 38000,
+    "comparePrice": 46000,
+    "rating": 4.8,
+    "reviewCount": 19,
+    "sku": "UF-OFF-004",
+    "inStock": true,
+    "stockQuantity": 7,
+    "featured": false,
+    "isCustomizable": true,
+    "leadTime": "In Showroom stock",
+    "dimensions": {
+      "width": "60 in (152 cm)",
+      "depth": "30 in (76 cm)",
+      "height": "30 in (76 cm)",
+      "weight": "62 kg"
+    },
+    "materials": {
+      "primaryWood": "Solid Teak Top with Matte Powder-Coated Carbon Steel Sub-frame",
+      "finish": "Satin Wire-brushed Natural Teak Grain",
+      "hardware": "Soft-close German ball-bearing drawer runners (Hafele)",
+      "upholstery": "N/A - Leatherette Blotter Insert Optional"
+    },
+    "warranty": "5-Year Comprehensive Warranty on Desk & Glides",
+    "images": [
+      "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "finishes": [
+        { "name": "Natural Teak & Black Steel", "hex": "#7C2D12", "priceDelta": 0 },
+        { "name": "Dark Walnut & Brass Accent", "hex": "#3E2723", "priceDelta": 2500 }
+      ],
+      "sizes": [
+        { "name": "Standard (5 x 2.5 ft)", "priceDelta": 0 },
+        { "name": "Director Suite (6 x 3 ft)", "priceDelta": 7500 }
+      ]
+    },
+    "features": [
+      "Integrated flip-top magnetic cable trough for laptop chargers and HDMI cables",
+      "Two lockable privacy drawers for legal documents and passport storage",
+      "Heavy-duty leg levelers ensuring stable stance on uneven marble or tile floors",
+      "Designed specifically for Rohtak clinics, law chambers, and modern home offices"
+    ],
+    "careInstructions": [
+      "Dust weekly with dry cotton cloth; avoid damp acidic cleaners"
+    ]
+  },
+  {
+    "id": "prod-005",
+    "slug": "fluted-glass-modular-walk-in-wardrobe",
+    "name": "Aura Fluted Glass 4-Door Wardrobe",
+    "tagline": "Floor-to-Ceiling Storage with Smart LED Lighting & Soft-Close Dampers",
+    "category": "bedroom",
+    "subcategory": "wardrobes",
+    "price": 84000,
+    "comparePrice": 99000,
+    "rating": 5.0,
+    "reviewCount": 27,
+    "sku": "UF-WAR-005",
+    "inStock": true,
+    "stockQuantity": 3,
+    "featured": true,
+    "isCustomizable": true,
+    "leadTime": "Custom engineered to your bedroom ceiling height in 8-12 days",
+    "dimensions": {
+      "width": "80 in (203 cm)",
+      "depth": "24 in (61 cm)",
+      "height": "84 in (213 cm)",
+      "weight": "140 kg"
+    },
+    "materials": {
+      "primaryWood": "High-Density Moisture-Resistant (HDMR) Marine Grade Core with Teak Veneer",
+      "finish": "Brushed Champagne Gold Anodized Aluminum Profile Doors with Fluted Toughened Glass",
+      "hardware": "Blum Austria 110-degree Soft-Close Hinges & Push-to-Open Sensor Rails"
+    },
+    "warranty": "10-Year Hardware & Board Moisture-Proof Warranty",
+    "images": [
+      "https://images.unsplash.com/photo-1558997519-83ea9252edf8?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "finishes": [
+        { "name": "Champagne Gold Frame + Fluted Glass", "hex": "#D4AF37", "priceDelta": 0 },
+        { "name": "Matte Charcoal Frame + Tinted Glass", "hex": "#262626", "priceDelta": 3000 }
+      ],
+      "sizes": [
+        { "name": "4-Door Suite (7 x 7 ft)", "priceDelta": 0 },
+        { "name": "6-Door Master Suite (10 x 7 ft)", "priceDelta": 32000 }
+      ]
+    },
+    "features": [
+      "Built-in warm-glow motion sensor LED strips that illuminate automatically on door opening",
+      "Integrated velvet jewelry drawer with biometric locking option",
+      "Dedicated long-coat hanging bay, tie rack, and deep suitcase storage shelf",
+      "Made to measure to fit seamlessly against walls with zero dust trap gaps"
+    ],
+    "careInstructions": [
+      "Clean glass with standard alcohol-based cleaner; wipe aluminum frames with dry cloth"
+    ]
+  },
+  {
+    "id": "prod-006",
+    "slug": "solace-orthopedic-natural-latex-pocket-spring-mattress",
+    "name": "Solace Orthopedic 10-Inch Mattress",
+    "tagline": "7-Zone Spine Alignment with Organic Pin-Core Latex & Zero Motion Transfer",
+    "category": "mattresses",
+    "subcategory": "mattresses",
+    "price": 28500,
+    "comparePrice": 36000,
+    "rating": 4.9,
+    "reviewCount": 63,
+    "sku": "UF-MAT-006",
+    "inStock": true,
+    "stockQuantity": 15,
+    "featured": false,
+    "isCustomizable": true,
+    "leadTime": "Immediate showroom dispatch",
+    "dimensions": {
+      "width": "72 in (183 cm)",
+      "depth": "78 in (198 cm)",
+      "height": "10 in (25 cm)",
+      "weight": "42 kg"
+    },
+    "materials": {
+      "primaryWood": "Internal Carbon-tempered Pocket Spring Coils",
+      "finish": "Organic Breathable Bamboo Quilted Top Cover with Anti-Microbial Silver Ions",
+      "upholstery": "100% Natural Tree Latex Layer + High-Resilience Transition Foam"
+    },
+    "warranty": "10-Year Non-Sagging Guarantee with 30-Night Showroom Exchange Trial",
+    "images": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "sizes": [
+        { "name": "King (72 x 78 in)", "priceDelta": 0 },
+        { "name": "Queen (60 x 78 in)", "priceDelta": -3500 },
+        { "name": "Single (36 x 78 in)", "priceDelta": -11000 }
+      ],
+      "finishes": [
+        { "name": "Medium-Firm Orthopedic (Recommended by Rohtak Doctors)", "hex": "#FFFFFF", "priceDelta": 0 },
+        { "name": "Plush Pillowtop", "hex": "#F3EFEA", "priceDelta": 3000 }
+      ]
+    },
+    "features": [
+      "Engineered with 7 ergonomic support zones for precise lumbar and hip relief",
+      "Individually wrapped pocket coils isolate motion completely when partners turn",
+      "Natural ventilated latex channels allow active airflow in Haryana summer months",
+      "Free doorstep delivery with complimentary pair of memory foam pillows"
+    ],
+    "careInstructions": [
+      "Rotate mattress 180 degrees every 3 months for balanced wear; do not fold"
+    ]
+  },
+  {
+    "id": "prod-007",
+    "slug": "terrace-bistro-weatherproof-outdoor-lounge-set",
+    "name": "Eden Weatherproof Balcony Lounge Set",
+    "tagline": "Hand-Woven All-Weather Synthetic Rattan with Rust-Proof Aluminum Frame",
+    "category": "outdoor",
+    "subcategory": "outdoor",
+    "price": 32000,
+    "comparePrice": 39500,
+    "rating": 4.8,
+    "reviewCount": 16,
+    "sku": "UF-OUT-007",
+    "inStock": true,
+    "stockQuantity": 4,
+    "featured": false,
+    "isCustomizable": false,
+    "leadTime": "In Showroom stock",
+    "dimensions": {
+      "width": "Chairs: 28 x 28 in | Table: 24 in dia",
+      "depth": "28 in (71 cm)",
+      "height": "32 in (81 cm)",
+      "weight": "28 kg set"
+    },
+    "materials": {
+      "primaryWood": "Aviation-grade Powder Coated Aluminum Skeleton",
+      "finish": "UV-Stabilized High Density Polyethylene (HDPE) Rattan Wicker",
+      "upholstery": "Sunproof Quick-Dry Olefin Fabric with 100% Water Repellent Coating"
+    },
+    "warranty": "3-Year UV Fade & Rust-Free Warranty",
+    "images": [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "finishes": [
+        { "name": "Natural Sand Rattan + Cream Cushions", "hex": "#D2B48C", "priceDelta": 0 },
+        { "name": "Charcoal Grey Rattan + Slate Cushions", "hex": "#4A4A4A", "priceDelta": 0 }
+      ]
+    },
+    "features": [
+      "Toughened 8mm tempered glass tabletop with suction stabilizers",
+      "100% outdoor proof against North Indian monsoon rains and high summer heat",
+      "Removable zipper cushion covers machine-washable at 30°C",
+      "Compact footprint ideal for apartment balconies in Omaxe and Sector residences"
+    ],
+    "careInstructions": [
+      "Hose down with water or wipe with soapy sponge; store cushions inside during heavy rain"
+    ]
+  },
+  {
+    "id": "prod-008",
+    "slug": "culina-bespoke-acrylic-modular-kitchen",
+    "name": "Culina Bespoke German Modular Kitchen",
+    "tagline": "Custom Made-to-Measure Kitchen with Anti-Fingerprint Acrylic & Quartz Tops",
+    "category": "modular-kitchen",
+    "subcategory": "modular-kitchen",
+    "price": 185000,
+    "comparePrice": 220000,
+    "rating": 5.0,
+    "reviewCount": 24,
+    "sku": "UF-KIT-008",
+    "inStock": true,
+    "stockQuantity": 10,
+    "featured": true,
+    "isCustomizable": true,
+    "leadTime": "3D CAD Design in 24 hrs / Installation in 14-18 days",
+    "dimensions": {
+      "width": "Custom Layout (L-Shape / U-Shape / Island)",
+      "depth": "Standard 24 in Base / 14 in Overhead",
+      "height": "Tailored to floor-to-ceiling",
+      "weight": "N/A Modular"
+    },
+    "materials": {
+      "primaryWood": "100% Boiling Water Proof (BWP) Marine Ply with Calibrated Core",
+      "finish": "Anti-Scratch Seamless Laser-Edged Acrylic / Matte PU Lacquer",
+      "hardware": "Grass / Blum Soft-Close Tandem Boxes & Aventos Bi-fold Lift Systems"
+    },
+    "warranty": "Lifetime Hardware Warranty + 10-Year Water & Termite Proof Board Guarantee",
+    "images": [
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "variants": {
+      "finishes": [
+        { "name": "Cashmere Beige & Walnut Woodgrain", "hex": "#D8C7B5", "priceDelta": 0 },
+        { "name": "Matte Forest Emerald & Brushed Brass", "hex": "#1E3F20", "priceDelta": 12000 },
+        { "name": "Slate Grey Minimalist Acrylic", "hex": "#475569", "priceDelta": 5000 }
+      ]
+    },
+    "features": [
+      "Free at-home measurement and 3D realistic rendering service in Rohtak",
+      "Heavy-duty spice pull-outs, corner carousel units, and under-sink organizers",
+      "Heat and turmeric-stain resistant quartz countertop options",
+      "Complete coordination including chimney, hob, and sink plumbing integration"
+    ],
+    "careInstructions": [
+      "Wipe acrylic fronts with soft micro-fiber cloth; avoid abrasive scouring powders"
+    ]
+  }
+]

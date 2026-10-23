@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation — Unique Furniture Rohtak</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Header Minimal -->
+  <header class="site-header">
+    <div class="container header-inner" style="height: 70px;">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-name" style="font-size: 1.25rem;">UNIQUE FURNITURE</span>
+        <span class="brand-locality">ROHTAK • ORDER CONFIRMED</span>
+      </a>
+      <a href="index.html" class="btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Return to Showroom</a>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container" style="max-width: 720px; text-align: center;">
+      <div style="width: 72px; height: 72px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+        <i data-lucide="check-circle" style="width: 44px; height: 44px;"></i>
+      </div>
+      
+      <span class="badge-pill" style="margin-bottom: 0.5rem;">FURNITURE ORDER BOOKED</span>
+      <h1 style="font-size: 2.25rem; margin-bottom: 0.5rem;">Thank You! Your Order is Confirmed.</h1>
+      <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+        Order Tracking ID: <strong id="order-id-display" style="color: var(--text-primary); font-size: 1.1rem;">UF-000000</strong>
+      </p>
+
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 2rem; text-align: left; box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+        <h4 style="font-size: 1.1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">Next Steps for Your Furniture:</h4>
+        <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+          <div style="display: flex; gap: 0.75rem;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--bg-dark); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0;">1</div>
+            <div>
+              <strong style="color: var(--text-primary);">Order Verification Call:</strong> Our Rohtak showroom executive will telephone you within 2 business hours to verify dimensions and delivery floor.
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--bg-dark); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0;">2</div>
+            <div>
+              <strong style="color: var(--text-primary);">White-Glove Dispatch:</strong> Packed in 5-ply protective foam and transported in our dedicated truck to prevent transit blemishes.
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--bg-dark); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0;">3</div>
+            <div>
+              <strong style="color: var(--text-primary);">On-Site Assembly:</strong> Our trained technicians assemble the piece in your chosen room and hand over your stamped 10-year warranty card.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a id="wa-order-link" href="#" target="_blank" class="btn-primary" style="background-color: #25D366; border-color: #25D366;">
+          <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+          <span>Track Order on WhatsApp</span>
+        </a>
+        <a href="shop.html" class="btn-outline">Continue Shopping</a>
+        <button onclick="window.print()" class="btn-outline">
+          <i data-lucide="printer" style="width: 16px; height: 16px;"></i>
+          <span>Print Receipt</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/store.js"></script>
+  <script src="js/commerce-adapter.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get('orderId') || 'UF-' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('order-id-display').textContent = orderId;
+
+      const waMsg = encodeURIComponent(`Hello Unique Furniture Rohtak, I placed order ${orderId} on your website. Please share dispatch update.`);
+      document.getElementById('wa-order-link').href = `https://wa.me/918685813057?text=${waMsg}`;
+
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

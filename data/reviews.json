@@ -1,0 +1,98 @@
+[
+  {
+    "id": "rev-001",
+    "customerName": "Ritu & Sandeep Hooda",
+    "locality": "Model Town, Rohtak",
+    "rating": 5,
+    "date": "August 2026",
+    "productPurchased": "Haveli Monolith 6-Seater Dining Set",
+    "category": "dining",
+    "reviewText": "We visited multiple showrooms along Delhi Road before deciding on Unique Furniture. The craftsmanship of our Sheesham dining table is outstanding. They even customized the stain color to precisely match our existing Crockery unit. Delivered on time with polite technicians who assembled it without making a mess. Truly Rohtak's finest furniture studio.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  },
+  {
+    "id": "rev-002",
+    "customerName": "Dr. Vikram Sharma",
+    "locality": "Sector 3, Rohtak",
+    "rating": 5,
+    "date": "July 2026",
+    "productPurchased": "Zenith Executive Teak Office Desk & Clinic Lounge",
+    "category": "office",
+    "reviewText": "Furnished my entire new clinic consulting room through Unique Furniture. The teak desk looks authoritative yet elegant, and the hidden cable management keeps medical monitor wires completely invisible. The owner personally took care of our timeline so we could open on our inauguration date.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  },
+  {
+    "id": "rev-003",
+    "customerName": "Meenakshi & Amit Malik",
+    "locality": "Omaxe City, Delhi Road",
+    "rating": 5,
+    "date": "June 2026",
+    "productPurchased": "The Royal Sheesham Hydraulic Bed & Solace Mattress",
+    "category": "bedroom",
+    "reviewText": "The hydraulic lift on this king bed is so smooth that even my mother can lift it effortlessly with one hand. Enormous storage inside that fits all our winter rajais. The mattress comfort is 10/10. So glad we didn't buy from generic online portals and chose a reputable local shop on Delhi Road where we can walk in anytime.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  },
+  {
+    "id": "rev-004",
+    "customerName": "Capt. Rajesh Ahlawat (Retd.)",
+    "locality": "Tilak Nagar, Rohtak",
+    "rating": 5,
+    "date": "May 2026",
+    "productPurchased": "Cloud Lounge L-Shape Sectional Sofa",
+    "category": "living-room",
+    "reviewText": "I am very particular about wood quality and joint strength. Inspected their frame construction in person before upholstery. They use solid kiln-seasoned hardwood. The bouclé fabric is high grade and our grandchildren's accidental juice spills cleaned right off with a damp cloth. Very dependable team.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  },
+  {
+    "id": "rev-005",
+    "customerName": "Pooja & Vikas Dhull",
+    "locality": "Sector 14, Rohtak",
+    "rating": 5,
+    "date": "April 2026",
+    "productPurchased": "Aura Fluted Glass 4-Door Wardrobe",
+    "category": "bedroom",
+    "reviewText": "Customized our master bedroom wardrobe right up to our 9-foot ceiling. The warm sensor lights turning on when doors open gives a 5-star hotel feel every single day. The fluted glass finish looks spectacular and keeps clutter concealed while maintaining a breezy airy aesthetic.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  },
+  {
+    "id": "rev-006",
+    "customerName": "Harish K. Grover",
+    "locality": "Bahadurgarh Road, Rohtak",
+    "rating": 5,
+    "date": "March 2026",
+    "productPurchased": "Bespoke German Modular Kitchen Setup",
+    "category": "modular-kitchen",
+    "reviewText": "Unique Furniture did our complete modular kitchen in Marine ply with acrylic shutters. Their 3D CAD visualization before fabrication was 100% accurate to the final installation. The soft close drawers and spice pullouts make cooking an absolute joy for my wife. 10 stars if I could give them.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  },
+  {
+    "id": "rev-007",
+    "customerName": "Sunita & Neeraj Sehrawat",
+    "locality": "Sector 1(P), Rohtak",
+    "rating": 5,
+    "date": "February 2026",
+    "productPurchased": "Eden Weatherproof Balcony Lounge Set",
+    "category": "outdoor",
+    "reviewText": "Bought this 3-piece wicker set for our first-floor sit-out terrace. It has survived heavy Rohtak summer heat and rains without any fading or rust whatsoever. Light enough to move around easily, yet heavy enough that strong winds do not budge it.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  },
+  {
+    "id": "rev-008",
+    "customerName": "Anil & Priya Jindal",
+    "locality": "Civil Lines / Delhi Road, Rohtak",
+    "rating": 5,
+    "date": "January 2026",
+    "productPurchased": "Complete 3BHK Custom Wedding Package",
+    "category": "custom",
+    "reviewText": "Ordered the complete wedding furniture package for our daughter's new home. Everything from the king bed, 6-door wardrobe, 6-seater dining table, and sofa set was completed within our 25-day deadline. Honest dealing, no hidden extra transport fees, and top-tier polish finish.",
+    "verifiedBuyer": true,
+    "deliveryCity": "Rohtak"
+  }
+]

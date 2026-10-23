@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Furniture Studio & Bespoke Quoting — Unique Furniture Rohtak</title>
+  <meta name="description" content="Design bespoke custom furniture for your space. Select solid woods, precise dimensions, and custom fabrics with our Rohtak craftsmen.">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .studio-step-container {
+      max-width: 820px;
+      margin-inline: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: clamp(1.5rem, 4vw, 3rem);
+      box-shadow: var(--shadow-lg);
+    }
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .step-indicator::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background: var(--border-subtle);
+      z-index: 1;
+    }
+    .step-node {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 2px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-tertiary);
+      transition: all var(--transition-fast);
+    }
+    .step-node.active .step-number {
+      border-color: var(--accent-gold);
+      background: var(--accent-gold);
+      color: #FFFFFF;
+    }
+    .step-node.completed .step-number {
+      border-color: var(--success);
+      background: var(--success);
+      color: #FFFFFF;
+    }
+    .step-label {
+      font-size: 0.775rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-tertiary);
+    }
+    .step-node.active .step-label {
+      color: var(--text-primary);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group.col-span-2 {
+      grid-column: span 2;
+    }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .form-control {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      font-size: 0.925rem;
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+    .form-control:focus {
+      border-color: var(--accent-gold);
+    }
+    .selection-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .selection-card {
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition-fast);
+      background: var(--bg-surface);
+    }
+    .selection-card:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+    .selection-card.selected {
+      border-color: var(--accent-gold);
+      background: var(--accent-gold-light);
+      color: var(--accent-wood);
+      font-weight: 600;
+    }
+    .selection-card-title {
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 600px) {
+      .form-grid, .selection-cards {
+        grid-template-columns: 1fr;
+      }
+      .form-group.col-span-2 {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="badge-pill">BESPOKE WORKSHOP</span>
+      <span>Made-to-Measure Teak & Sheesham Wood • Direct Crafting in Haryana</span>
+      <a href="tel:+918685813057" style="color: var(--accent-gold); font-weight: 600; text-decoration: underline;">+91 86858 13057</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-name">UNIQUE FURNITURE</span>
+        <span class="brand-locality">ROHTAK • ESTD. HARYANA</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop Collection</a>
+        <a href="custom-furniture.html" class="nav-link active">Custom Studio</a>
+        <a href="reviews.html" class="nav-link">Rohtak Reviews</a>
+        <a href="store.html" class="nav-link">Our Showroom</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="action-btn"><i data-lucide="heart" style="width: 20px; height: 20px;"></i></a>
+        <button class="action-btn open-cart-btn"><i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Studio Main -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align: center; max-width: 640px; margin-inline: auto; margin-bottom: 3rem;">
+        <span class="badge-pill" style="margin-bottom: 0.5rem;">CUSTOM FURNITURE STUDIO</span>
+        <h1 style="font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 0.75rem;">Build Furniture Tailored to Your Architecture</h1>
+        <p style="color: var(--text-secondary);">
+          Specify your room dimensions, preferred timber, and budget. Our master carpenters on Delhi Road evaluate feasibility and furnish a detailed quote within 24 hours.
+        </p>
+      </div>
+
+      <div class="studio-step-container">
+        <!-- Step Navigation Bar -->
+        <div class="step-indicator">
+          <div class="step-node active" id="node-1">
+            <div class="step-number">1</div>
+            <span class="step-label">Furniture Type</span>
+          </div>
+          <div class="step-node" id="node-2">
+            <div class="step-number">2</div>
+            <span class="step-label">Dimensions</span>
+          </div>
+          <div class="step-node" id="node-3">
+            <div class="step-number">3</div>
+            <span class="step-label">Materials</span>
+          </div>
+          <div class="step-node" id="node-4">
+            <div class="step-number">4</div>
+            <span class="step-label">Contact & Submit</span>
+          </div>
+        </div>
+
+        <!-- Step 1: Furniture Category -->
+        <div id="step-1" class="wizard-step">
+          <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">1. Select What You Wish to Build</h3>
+          <div class="selection-cards" style="margin-bottom: 2rem;">
+            <div class="selection-card selected" onclick="selectType(this, 'Hydraulic Storage Bed')">
+              <i data-lucide="bed" style="width: 32px; height: 32px; margin: 0 auto; color: var(--accent-gold);"></i>
+              <div class="selection-card-title">Custom Bed & Storage</div>
+            </div>
+            <div class="selection-card" onclick="selectType(this, 'Modular L-Shape Sofa')">
+              <i data-lucide="armchair" style="width: 32px; height: 32px; margin: 0 auto; color: var(--accent-gold);"></i>
+              <div class="selection-card-title">Sofa & Sectional</div>
+            </div>
+            <div class="selection-card" onclick="selectType(this, 'Solid Wood Dining Set')">
+              <i data-lucide="utensils" style="width: 32px; height: 32px; margin: 0 auto; color: var(--accent-gold);"></i>
+              <div class="selection-card-title">Dining Table & Chairs</div>
+            </div>
+            <div class="selection-card" onclick="selectType(this, 'Floor-to-Ceiling Wardrobe')">
+              <i data-lucide="archive" style="width: 32px; height: 32px; margin: 0 auto; color: var(--accent-gold);"></i>
+              <div class="selection-card-title">Modular Wardrobe</div>
+            </div>
+            <div class="selection-card" onclick="selectType(this, 'Executive Office Desk')">
+              <i data-lucide="briefcase" style="width: 32px; height: 32px; margin: 0 auto; color: var(--accent-gold);"></i>
+              <div class="selection-card-title">Executive Workstation</div>
+            </div>
+            <div class="selection-card" onclick="selectType(this, 'Bespoke Modular Kitchen')">
+              <i data-lucide="chef-hat" style="width: 32px; height: 32px; margin: 0 auto; color: var(--accent-gold);"></i>
+              <div class="selection-card-title">Modular Kitchen Setup</div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: flex-end;">
+            <button class="btn-primary" onclick="goToStep(2)">
+              <span>Next: Dimensions</span>
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Dimensions & Room Specs -->
+        <div id="step-2" class="wizard-step" style="display: none;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">2. Approximate Room Dimensions</h3>
+          <div class="form-grid" style="margin-bottom: 2rem;">
+            <div class="form-group">
+              <label>Room Length (e.g. 14 ft or 168 inches)</label>
+              <input type="text" id="custom-length" class="form-control" placeholder="14 ft">
+            </div>
+            <div class="form-group">
+              <label>Room Width (e.g. 12 ft or 144 inches)</label>
+              <input type="text" id="custom-width" class="form-control" placeholder="12 ft">
+            </div>
+            <div class="form-group col-span-2">
+              <label>Ceiling Height / Height Clearance</label>
+              <input type="text" id="custom-height" class="form-control" placeholder="Standard 10 ft ceiling">
+            </div>
+            <div class="form-group col-span-2">
+              <label>Specific Placement or Room Details (Walls, Doors, AC vents)</label>
+              <textarea id="custom-room-details" class="form-control" rows="3" placeholder="E.g. Needs to fit between window and master bathroom door with right lounger orientation."></textarea>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <button class="btn-outline" onclick="goToStep(1)">Back</button>
+            <button class="btn-primary" onclick="goToStep(3)">
+              <span>Next: Materials & Finish</span>
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Material Preferences -->
+        <div id="step-3" class="wizard-step" style="display: none;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">3. Timber, Upholstery & Budget</h3>
+          <div class="form-grid" style="margin-bottom: 2rem;">
+            <div class="form-group">
+              <label>Primary Timber Preference</label>
+              <select id="custom-timber" class="form-control">
+                <option value="100% Solid Seasoned Sheesham">100% Solid Seasoned Sheesham (Indian Rosewood)</option>
+                <option value="Burmese Teakwood">Burmese Teakwood (Grade-A)</option>
+                <option value="HDMR Marine Ply + Veneer">HDMR Marine Ply + Natural Veneer</option>
+                <option value="German Anti-Fingerprint Acrylic">German Anti-Fingerprint Acrylic (Kitchen/Wardrobes)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Upholstery / Finish</label>
+              <select id="custom-fabric" class="form-control">
+                <option value="Natural Matte Walnut Satin">Natural Matte Walnut Satin (Wood)</option>
+                <option value="Deep Teak Amber Polish">Deep Teak Amber Polish</option>
+                <option value="Stain-Resistant Textured Bouclé">Stain-Resistant Textured Bouclé (Fabric)</option>
+                <option value="Premium Velvet with Tufting">Premium Velvet with Tufting</option>
+                <option value="Full Grain Genuine Leatherette">Full Grain Genuine Leatherette</option>
+              </select>
+            </div>
+            <div class="form-group col-span-2">
+              <label>Target Budget Range</label>
+              <div class="selection-cards">
+                <div class="selection-card selected" onclick="selectBudget(this, '₹30,000 - ₹50,000')">
+                  <div class="selection-card-title">₹30,000 - ₹50,000</div>
+                </div>
+                <div class="selection-card" onclick="selectBudget(this, '₹50,000 - ₹1,00,000')">
+                  <div class="selection-card-title">₹50,000 - ₹1,00,000</div>
+                </div>
+                <div class="selection-card" onclick="selectBudget(this, '₹1,00,000+')">
+                  <div class="selection-card-title">₹1,00,000+ (Full Suite)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <button class="btn-outline" onclick="goToStep(2)">Back</button>
+            <button class="btn-primary" onclick="goToStep(4)">
+              <span>Next: Contact Information</span>
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Contact & Submission -->
+        <div id="step-4" class="wizard-step" style="display: none;">
+          <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">4. Your Details for Direct Quotation</h3>
+          <form id="custom-quote-form" onsubmit="handleQuoteSubmit(event)">
+            <div class="form-grid" style="margin-bottom: 2rem;">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="quote-name" class="form-control" required placeholder="e.g. Surender Hooda">
+              </div>
+              <div class="form-group">
+                <label>Mobile Number (WhatsApp Preferred) *</label>
+                <input type="tel" id="quote-phone" class="form-control" required placeholder="+91 98120 XXXXX">
+              </div>
+              <div class="form-group col-span-2">
+                <label>Locality / Delivery City in Haryana *</label>
+                <input type="text" id="quote-locality" class="form-control" required placeholder="e.g. Model Town, Sector 3, Omaxe City Rohtak">
+              </div>
+              <div class="form-group col-span-2">
+                <label>Reference Image or Floor Plan URL (Optional)</label>
+                <input type="url" id="quote-img-url" class="form-control" placeholder="Paste Pinterest, Instagram or Google Drive image link">
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <button type="button" class="btn-outline" onclick="goToStep(3)">Back</button>
+              <button type="submit" class="btn-gold">
+                <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+                <span>Submit Quote Request</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Success Screen -->
+        <div id="step-success" style="display: none; text-align: center; padding: 2rem 1rem;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i data-lucide="check" style="width: 36px; height: 36px;"></i>
+          </div>
+          <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Custom Quote Request Dispatched!</h2>
+          <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 1.5rem;">
+            Your request ID is <strong id="quote-success-id" style="color: var(--text-primary);">QUOTE-2026-000</strong>. Our senior woodworking consultant on Delhi Road, Rohtak is reviewing your specifications.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a id="quote-success-wa" href="#" target="_blank" class="btn-primary" style="background-color: #25D366; border-color: #25D366;">
+              <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
+              <span>Send Instantly via WhatsApp</span>
+            </a>
+            <a href="index.html" class="btn-outline">Return to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mini-Cart Drawer -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Shopping Bag</div>
+      <button class="drawer-close-btn close-cart-btn"><i data-lucide="x" style="width: 20px; height: 20px;"></i></button>
+    </div>
+    <div class="drawer-body" id="cart-drawer-items"></div>
+    <div class="drawer-footer" id="cart-drawer-footer-actions">
+      <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem;">
+        <span>Total:</span>
+        <span id="cart-drawer-total">₹0</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <a href="cart.html" class="btn-outline" style="padding: 0.75rem 0.5rem; text-align: center;">View Bag</a>
+        <a href="checkout.html" class="btn-gold" style="padding: 0.75rem 0.5rem; text-align: center;">Checkout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/commerce-adapter.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let selectedType = 'Hydraulic Storage Bed';
+    let selectedBudget = '₹30,000 - ₹50,000';
+
+    function selectType(el, type) {
+      el.parentElement.querySelectorAll('.selection-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedType = type;
+    }
+
+    function selectBudget(el, budget) {
+      el.parentElement.querySelectorAll('.selection-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedBudget = budget;
+    }
+
+    function goToStep(step) {
+      document.querySelectorAll('.wizard-step').forEach(s => s.style.display = 'none');
+      document.getElementById(`step-${step}`).style.display = 'block';
+
+      document.querySelectorAll('.step-node').forEach((n, idx) => {
+        n.classList.remove('active', 'completed');
+        if (idx + 1 < step) n.classList.add('completed');
+        if (idx + 1 === step) n.classList.add('active');
+      });
+
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function handleQuoteSubmit(e) {
+      e.preventDefault();
+
+      const quoteData = {
+        furnitureType: selectedType,
+        roomDimensions: `${document.getElementById('custom-length').value || '14 ft'} x ${document.getElementById('custom-width').value || '12 ft'} (Height: ${document.getElementById('custom-height').value || '10 ft'})`,
+        preferredMaterial: `${document.getElementById('custom-timber').value} / ${document.getElementById('custom-fabric').value}`,
+        budgetTier: selectedBudget,
+        notes: document.getElementById('custom-room-details').value || 'No special instructions.',
+        referenceImageUrl: document.getElementById('quote-img-url').value || '',
+        customer: {
+          name: document.getElementById('quote-name').value,
+          phone: document.getElementById('quote-phone').value,
+          locality: document.getElementById('quote-locality').value
+        }
+      };
+
+      const result = window.store.submitCustomQuote(quoteData);
+
+      // Hide form, show success
+      document.querySelectorAll('.wizard-step').forEach(s => s.style.display = 'none');
+      document.querySelector('.step-indicator').style.display = 'none';
+      document.getElementById('step-success').style.display = 'block';
+      document.getElementById('quote-success-id').textContent = result.id;
+
+      const waText = encodeURIComponent(`Hello Unique Furniture Rohtak, I submitted Custom Quote Request ${result.id} for ${result.furnitureType} (${result.roomDimensions}) under budget ${result.budgetTier}. My name is ${result.customer.name} from ${result.customer.locality}.`);
+      document.getElementById('quote-success-wa').href = `https://wa.me/918685813057?text=${waText}`;
+
+      window.showToast("Quote submitted to showroom team!", "success");
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

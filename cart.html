@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Bag — Unique Furniture Rohtak</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .cart-page-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 3rem;
+      align-items: start;
+    }
+    .cart-table-header {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 1fr;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border-subtle);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .cart-row {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1fr 1fr;
+      align-items: center;
+      padding-block: 1.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .cart-order-summary {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 100px;
+    }
+    @media (max-width: 800px) {
+      .cart-page-layout {
+        grid-template-columns: 1fr;
+      }
+      .cart-table-header {
+        display: none;
+      }
+      .cart-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-inner">
+      <span class="badge-pill">SHOPPING BAG</span>
+      <span>Free White-Glove Delivery in Haryana on Orders Above ₹20,000</span>
+      <a href="tel:+918685813057" style="color: var(--accent-gold); font-weight: 600; text-decoration: underline;">+91 86858 13057</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
+          <path d="M3 11v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H7v-2a2 2 0 0 0-4 0Z"></path>
+          <path d="M5 18v2"></path>
+          <path d="M19 18v2"></path>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">UNIQUE FURNITURE</span>
+          <span class="brand-sub">ROHTAK</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop Collection</a>
+        <a href="custom-furniture.html" class="nav-link">Custom Studio</a>
+        <a href="reviews.html" class="nav-link">Rohtak Reviews</a>
+        <a href="store.html" class="nav-link">Our Showroom</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="action-btn"><i data-lucide="heart" style="width: 20px; height: 20px;"></i></a>
+        <button class="action-btn open-cart-btn"><i data-lucide="shopping-bag" style="width: 20px; height: 20px;"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Bag Content -->
+  <section class="section">
+    <div class="container">
+      <h1 style="font-size: 2.25rem; margin-bottom: 2rem;">Your Shopping Bag</h1>
+
+      <div id="cart-content-wrapper">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/commerce-adapter.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.store.subscribe('cart:updated', renderCartPage);
+      window.store.subscribe('store:ready', renderCartPage);
+      renderCartPage();
+    });
+
+    function renderCartPage() {
+      const wrapper = document.getElementById('cart-content-wrapper');
+      if (!wrapper) return;
+
+      const summary = window.store.getCartSummary();
+
+      if (summary.items.length === 0) {
+        wrapper.innerHTML = `
+          <div style="text-align: center; padding: 5rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm);">
+            <i data-lucide="shopping-bag" style="width: 56px; height: 56px; color: var(--text-tertiary); margin: 0 auto 1.5rem;"></i>
+            <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Your shopping bag is currently empty</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 480px; margin-inline: auto;">
+              Explore our handcrafted solid Sheesham beds, luxury sectionals, and dining sets designed for Haryana homes.
+            </p>
+            <a href="shop.html" class="btn-primary">Explore Handcrafted Collection</a>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      wrapper.innerHTML = `
+        <div class="cart-page-layout">
+          <div>
+            <div class="cart-table-header">
+              <span>Item Description</span>
+              <span style="text-align: center;">Price</span>
+              <span style="text-align: center;">Quantity</span>
+              <span style="text-align: right;">Subtotal</span>
+            </div>
+
+            <div class="cart-rows-container">
+              ${summary.items.map(item => `
+                <div class="cart-row">
+                  <div style="display: flex; gap: 1.25rem; align-items: center;">
+                    <img src="${item.image}" alt="${item.name}" style="width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius-sm); background: var(--bg-subtle);">
+                    <div>
+                      <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem;">${item.name}</h4>
+                      ${item.variant ? `<div style="font-size: 0.8rem; color: var(--accent-gold);">${item.variant.finish || item.variant.size || 'Custom Variant'}</div>` : ''}
+                      <button onclick="window.store.removeFromCart('${item.id}'); window.showToast('Item removed', 'info');" style="background: none; border: none; font-size: 0.8rem; color: var(--error); cursor: pointer; margin-top: 0.4rem; padding: 0;">
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                  <div style="text-align: center; font-weight: 600;">
+                    ₹${item.price.toLocaleString('en-IN')}
+                  </div>
+                  <div style="display: flex; justify-content: center;">
+                    <div style="display: inline-flex; align-items: center; border: 1px solid var(--border-medium); border-radius: var(--radius-sm);">
+                      <button onclick="window.store.updateCartQuantity('${item.id}', ${item.quantity - 1})" style="padding: 0.25rem 0.6rem; background: none; border: none; cursor: pointer;">-</button>
+                      <span style="padding-inline: 0.75rem; font-weight: 600; font-size: 0.9rem;">${item.quantity}</span>
+                      <button onclick="window.store.updateCartQuantity('${item.id}', ${item.quantity + 1})" style="padding: 0.25rem 0.6rem; background: none; border: none; cursor: pointer;">+</button>
+                    </div>
+                  </div>
+                  <div style="text-align: right; font-weight: 700; font-size: 1.05rem;">
+                    ₹${(item.price * item.quantity).toLocaleString('en-IN')}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center;">
+              <a href="shop.html" class="btn-outline">
+                <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                <span>Continue Shopping</span>
+              </a>
+              <button onclick="window.store.clearCart(); window.showToast('Bag cleared', 'info');" style="background: none; border: none; color: var(--text-tertiary); font-size: 0.85rem; cursor: pointer; text-decoration: underline;">
+                Clear Entire Bag
+              </button>
+            </div>
+          </div>
+
+          <!-- Order Summary Column -->
+          <div class="cart-order-summary">
+            <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem;">Order Summary</h3>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.925rem;">
+              <span style="color: var(--text-secondary);">Items Subtotal:</span>
+              <span style="font-weight: 600;">₹${summary.subtotal.toLocaleString('en-IN')}</span>
+            </div>
+
+            ${summary.discount > 0 ? `
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.925rem; color: var(--success);">
+                <span>Discount (UNIQUE10):</span>
+                <span style="font-weight: 600;">-₹${summary.discount.toLocaleString('en-IN')}</span>
+              </div>
+            ` : ''}
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem; font-size: 0.925rem;">
+              <span style="color: var(--text-secondary);">Delivery & Setup (Haryana):</span>
+              <span style="font-weight: 600; color: ${summary.shipping === 0 ? 'var(--success)' : 'inherit'};">
+                ${summary.shipping === 0 ? 'FREE (Orders > ₹20k)' : '₹' + summary.shipping.toLocaleString('en-IN')}
+              </span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.925rem;">
+              <span style="color: var(--text-secondary);">GST Included (18%):</span>
+              <span style="font-weight: 600;">₹${summary.gst.toLocaleString('en-IN')}</span>
+            </div>
+
+            <!-- Coupon Input -->
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+              <input type="text" id="coupon-field" placeholder="Enter coupon (e.g. UNIQUE10)" style="flex-grow: 1; padding: 0.5rem 0.75rem; font-size: 0.85rem; border: 1px solid var(--border-medium); border-radius: var(--radius-sm); outline: none;">
+              <button class="btn-outline" style="padding: 0.5rem 0.85rem; font-size: 0.85rem;" onclick="applyCartCoupon()">Apply</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; border-top: 2px solid var(--border-subtle); padding-top: 1rem; margin-bottom: 1.5rem;">
+              <span>Total:</span>
+              <span style="color: var(--accent-wood);">₹${summary.grandTotal.toLocaleString('en-IN')}</span>
+            </div>
+
+            <a href="checkout.html" class="btn-gold" style="width: 100%; text-align: center; padding: 1rem;">
+              <span>Proceed to Checkout</span>
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </a>
+
+            <div style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-tertiary); text-align: center;">
+              🔒 Direct showroom warranty and delivery protection guaranteed.
+            </div>
+          </div>
+        </div>
+      `;
+
+      lucide.createIcons();
+    }
+
+    function applyCartCoupon() {
+      const code = document.getElementById('coupon-field').value;
+      const res = window.store.applyCoupon(code);
+      window.showToast(res.message, res.success ? 'success' : 'error');
+    }
+  </script>
+</body>
+</html>
